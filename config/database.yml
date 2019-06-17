@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: shoe-app_production
-  username: shoe-app
+  username: mateo
   password: <%= ENV['SHOE-APP_DATABASE_PASSWORD'] %>
