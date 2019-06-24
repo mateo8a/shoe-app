@@ -1,0 +1,31 @@
+= form_for @shoe do |f|
+  - if @shoe.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@shoe.errors.count, "error")} prohibited this shoe from being saved:"
+      %ul
+        - @shoe.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :color
+    = f.text_field :color
+  .field
+    = f.label :date_received
+    = f.date_select :date_received
+  .field
+    = f.label :date_due
+    = f.date_select :date_due
+  .field
+    = f.label :owner
+    = f.text_field :owner
+  .field
+    = f.label :phone
+    = f.number_field :phone
+  .field
+    = f.label :type_of_payment
+    = f.text_field :type_of_payment
+  .field
+    = f.label :cost
+    = f.text_field :cost
+  .actions
+    = f.submit 'Save'

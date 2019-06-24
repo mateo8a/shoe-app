@@ -1,0 +1,25 @@
+%p
+  %b Color:
+  = @shoe.color
+%p
+  %b Date received:
+  = @shoe.date_received
+%p
+  %b Date due:
+  = @shoe.date_due
+%p
+  %b Owner:
+  = @shoe.owner
+%p
+  %b Phone:
+  = @shoe.phone
+%p
+  %b Type of payment:
+  = @shoe.type_of_payment
+%p
+  %b Cost:
+  = @shoe.cost
+
+= link_to 'Edit', edit_shoe_path(@shoe)
+\|
+= link_to 'Back', shoes_path
