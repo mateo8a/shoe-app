@@ -8,6 +8,15 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .app-header
+      .app-title
+        %h1 Zapatos Ochoa
+      .auth-buttons
+        - if user_signed_in?
+          = "Hello, #{current_user.first_name}"
+          = "(logout)"
+        - else
+          = "sign in"
     %p.notice= notice
     %p.alert= alert
     = yield
