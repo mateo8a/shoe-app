@@ -13,7 +13,7 @@
         %h1 Zapatos Ochoa
       .auth-buttons
         - if user_signed_in?
-          = "Hello, #{current_user.first_name}"
+          = "Hello, #{current_user}"
           = "(logout)"
         - else
           = "sign in"
