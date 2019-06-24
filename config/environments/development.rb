@@ -61,4 +61,7 @@ Rails.application.configure do
 
   # For Devise to work
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # To not restart server every time I change something
+  config.reload_classes_only_on_change = false
 end
