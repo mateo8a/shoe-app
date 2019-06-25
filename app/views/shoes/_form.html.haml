@@ -36,20 +36,19 @@
     = f.text_area :task_description, cols: 80, rows: 10
   .field
     = f.label :cost
-    = f.text_field :cost
+    = cost_input_field(f, @shoe)
   .field#paid-for-field
     = f.label :paid_for
-    = f.check_box :paid_for
-  - hidden = @shoe.paid_for ? "" : "hidden"
-  .field#type-of-payment{ class: hidden }
+    = paid_for_checkbox(f, @shoe)
+  .field#type-of-payment{ class: @shoe.paid_for ? "" : "hidden" }
     %div Type of payment
     .button-options
       %ul#list-of-options
         %li
-          = f.radio_button :type_of_payment, "Card"
+          = payment_options_button(f, @shoe, "Card")
           = f.label :type_of_payment, "Card", value: "Card"
         %li
-          = f.radio_button :type_of_payment, "Cash"
+          = payment_options_button(f, @shoe, "Cash")
           = f.label :type_of_payment, "Cash", value: "Cash"
   .field
     = f.label :date_received
