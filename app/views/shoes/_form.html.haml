@@ -37,10 +37,11 @@
   .field
     = f.label :cost
     = f.text_field :cost
-  .field
+  .field#paid-for-field
     = f.label :paid_for
     = f.check_box :paid_for
-  .field
+  - hidden = @shoe.paid_for ? "" : "hidden"
+  .field#type-of-payment{ class: hidden }
     %div Type of payment
     .button-options
       %ul#list-of-options
