@@ -22,6 +22,8 @@
   color: red;
 }
 
+/* App header */
+
 .app-header {
   border-bottom-style: solid;
   border-width: 1px;
@@ -64,3 +66,52 @@
 .nav-buttons .nav-button:hover {
   background-color: #3e8e41;
 }
+
+/* New shoe form */
+
+.payment-options {
+  overflow: overlay;
+}
+
+#types-of-payment {
+     list-style-type:none;
+     padding:0;
+}
+
+#types-of-payment li {
+     float:left;
+     margin:0 5px 0 0;
+    width:100px;
+    height:40px;
+    position:relative;
+}
+
+#types-of-payment label, #types-of-payment input {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+#types-of-payment input[type="radio"] {
+    opacity:0.011;
+    z-index:100;
+}
+
+#types-of-payment input[type="radio"]:checked + label {
+    background:yellow;
+}
+
+#types-of-payment label {
+     padding:5px;
+     border:1px solid #CCC;
+     cursor:pointer;
+    z-index:90;
+}
+
+#types-of-payment label:hover {
+     background:#DDD;
+}
+
