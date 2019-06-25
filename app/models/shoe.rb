@@ -6,6 +6,6 @@ class Shoe < ApplicationRecord
   validates :gender, presence: true
   validates :task_description, presence: true
   validates :cost, presence: true
-  validates :type_of_payment, presence: true if paid_for
-  validates :location, presence: true if finished
+  validates :type_of_payment, presence: true, if: -> { paid_for }
+  validates :location, presence: true, if: -> { finished }
 end
