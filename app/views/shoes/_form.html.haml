@@ -7,25 +7,40 @@
           %li= message
 
   .field
-    = f.label :color
-    = f.text_field :color
-  .field
-    = f.label :date_received
-    = f.date_select :date_received
-  .field
-    = f.label :date_due
-    = f.date_select :date_due
-  .field
     = f.label :owner
     = f.text_field :owner
   .field
     = f.label :phone
     = f.number_field :phone
   .field
-    = f.label :type_of_payment
-    = f.text_field :type_of_payment
+    = f.label :product_type
+    = f.text_field :product_type
+  .field
+    = f.label :brand
+    = f.text_field :brand
+  .field
+    = f.label :color
+    = f.text_field :color
+  .field
+    = f.label :gender
+    = f.text_field :gender
+  .field
+    = f.label :task_description
+    = f.text_area :task_description
   .field
     = f.label :cost
     = f.text_field :cost
+  .field
+    = f.label :paid_for
+    = f.check_box :paid_for
+  .field#type_of_payment
+    = f.label :type_of_payment
+    = f.text_field :type_of_payment
+  .field
+    = f.label :date_received
+    = f.date_select :date_received
+  .field
+    = f.label :date_due
+    = f.date_select :date_due
   .actions
     = f.submit 'Save'
