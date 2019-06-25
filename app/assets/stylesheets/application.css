@@ -25,7 +25,11 @@
 .app-header {
   border-bottom-style: solid;
   border-width: 1px;
-  height: 55px;
+  overflow: overlay;
+}
+
+.topmost-header {
+  overflow: overlay;
 }
 
 .app-title {
@@ -35,4 +39,28 @@
 .auth-buttons {
   padding-top: 20px;
   float: right;
+}
+
+.nav-buttons {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: overlay;
+}
+
+.nav-buttons .nav-button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  border-radius: 12px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+.nav-buttons .nav-button:hover {
+  background-color: #3e8e41;
 }
