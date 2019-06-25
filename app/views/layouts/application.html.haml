@@ -9,15 +9,19 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     .app-header
-      .app-title
-        %h1 Zapatos Ochoa
-      .auth-buttons
-        - if user_signed_in?
-          = "Hello, #{current_user.first_name} - ("
-          = link_to 'Logout', destroy_user_session_path, method: :delete
-          = ")"
-        - else
-          = link_to 'Log in', new_user_session_path
+      .topmost-header
+        .app-title
+          %h1 Zapatos Ochoa
+        .auth-buttons
+          - if user_signed_in?
+            = "Hello, #{current_user.first_name} - ("
+            = link_to 'Logout', destroy_user_session_path, method: :delete
+            = ")"
+          - else
+            = link_to 'Log in', new_user_session_path
+      .nav-buttons
+        %button.nav-button New shoe
+        %button.nav-button All shoes
     %p.notice= notice
     %p.alert= alert
     = yield
