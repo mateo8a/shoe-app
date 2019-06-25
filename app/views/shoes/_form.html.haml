@@ -22,8 +22,15 @@
     = f.label :color
     = f.text_field :color
   .field
-    = f.label :gender
-    = f.text_field :gender
+    %div Gender
+    .button-options
+      %ul#list-of-options
+        %li
+          = f.radio_button :gender, "Male"
+          = f.label :gender, "Male", value: "Male"
+        %li
+          = f.radio_button :gender, "Female"
+          = f.label :gender, "Female", value: "Female"
   .field
     = f.label :task_description
     = f.text_area :task_description, cols: 80, rows: 10
@@ -35,8 +42,8 @@
     = f.check_box :paid_for
   .field
     %div Type of payment
-    .payment-options
-      %ul#types-of-payment
+    .button-options
+      %ul#list-of-options
         %li
           = f.radio_button :type_of_payment, "Card"
           = f.label :type_of_payment, "Card", value: "Card"

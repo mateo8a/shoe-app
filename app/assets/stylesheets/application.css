@@ -69,16 +69,16 @@
 
 /* New shoe form */
 
-.payment-options {
+.button-options {
   overflow: overlay;
 }
 
-#types-of-payment {
+#list-of-options {
      list-style-type:none;
      padding:0;
 }
 
-#types-of-payment li {
+#list-of-options li {
      float:left;
      margin:0 5px 0 0;
     width:100px;
@@ -86,7 +86,7 @@
     position:relative;
 }
 
-#types-of-payment label, #types-of-payment input {
+#list-of-options label, #list-of-options input {
     display:block;
     position:absolute;
     top:0;
@@ -95,23 +95,23 @@
     bottom:0;
 }
 
-#types-of-payment input[type="radio"] {
+#list-of-options input[type="radio"] {
     opacity:0.011;
     z-index:100;
 }
 
-#types-of-payment input[type="radio"]:checked + label {
+#list-of-options input[type="radio"]:checked + label {
     background:yellow;
 }
 
-#types-of-payment label {
+#list-of-options label {
      padding:5px;
      border:1px solid #CCC;
      cursor:pointer;
     z-index:90;
 }
 
-#types-of-payment label:hover {
+#list-of-options label:hover {
      background:#DDD;
 }
 
