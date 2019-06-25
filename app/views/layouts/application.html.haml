@@ -20,8 +20,10 @@
           - else
             = link_to 'Log in', new_user_session_path
       .nav-buttons
-        %button.nav-button New shoe
-        %button.nav-button All shoes
+        %a{:href => new_shoe_path}
+          %button.nav-button New shoe
+        %a{:href => shoes_path}
+          %button.nav-button All shoes
     %p.notice= notice
     %p.alert= alert
     = yield
