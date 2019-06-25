@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+.notice {
+  color: green;
+}
+
+.alert {
+  color: red;
+}
+
+.app-header {
+  border-bottom-style: solid;
+  border-width: 1px;
+  height: 55px;
+}
+
+.app-title {
+  float: left;
+}
+
+.auth-buttons {
+  padding-top: 20px;
+  float: right;
+}
