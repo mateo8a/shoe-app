@@ -36,7 +36,7 @@
     = f.text_area :task_description, cols: 80, rows: 10
   .field
     = f.label :cost
-    = cost_input_field(f, @shoe)
+    = "$ ".html_safe + cost_input_field(f, @shoe)
   .field#paid-for-field
     = f.label :paid_for
     = paid_for_checkbox(f, @shoe)
