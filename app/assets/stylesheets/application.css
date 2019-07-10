@@ -67,6 +67,15 @@
   background-color: #3e8e41;
 }
 
+/* Footer */
+
+.footer {
+  padding-bottom: 20px;
+  display: block;
+  bottom: 0;
+  height: 20px;
+}
+
 /* Miscellaneous */
 
 .hidden {

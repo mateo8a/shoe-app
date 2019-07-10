@@ -65,3 +65,38 @@
 .new_shoe #paid-for-field {
   margin-bottom: 0;
 }
+
+.save-button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  border-radius: 12px;
+  color: white;
+  padding: 15px 32px;
+  margin-right: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+.save-button:hover {
+  background-color: #3e8e41;
+}
+
+.back-button {
+  background-color: #f54242; /* Green */
+  border: 1px solid green;
+  border-radius: 12px;
+  color: white !important;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+.back-button:hover {
+  background-color: #c43333;
+}
