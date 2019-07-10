@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  belongs_to :organization
+
   ADMIN_EMAILS = ["mateo.ochoac@gmail.com"]
 
   def role
