@@ -9,43 +9,47 @@
 }
 
 #list-of-options {
-     list-style-type:none;
-     padding:0;
+  list-style-type:none;
+  padding:0;
 }
 
 #list-of-options li {
-     float:left;
-     margin:0 5px 0 0;
-    width:100px;
-    height:40px;
-    position:relative;
+  float:left;
+  margin:0 5px 0 0;
+  width:100px;
+  height:40px;
+  position:relative;
 }
 
 #list-of-options label, #list-of-options input {
-    display:block;
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
 }
 
 #list-of-options input[type="radio"] {
-    opacity:0.011;
-    z-index:100;
+  opacity:0.011;
+  z-index:100;
 }
 
-#list-of-options input[type="radio"]:checked + label {
-    background:yellow;
+#list-of-options input[type="radio"]:checked + label, #list-of-options input[type="radio"]:checked + .field_with_errors label {
+  background:yellow;
 }
 
 #list-of-options label {
-     padding:5px;
-     border:1px solid #CCC;
-     cursor:pointer;
-    z-index:90;
+  padding:5px;
+  border:1px solid #CCC;
+  cursor:pointer;
+  z-index:90;
 }
 
 #list-of-options label:hover {
-     background:#DDD;
+  background:#DDD;
+}
+
+#list-of-options .field-with-errors {
+  opacity: 0.1;
 }
