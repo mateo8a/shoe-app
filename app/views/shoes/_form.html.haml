@@ -11,7 +11,7 @@
     = f.text_field :owner
   .field
     = f.label :phone
-    = f.number_field :phone
+    = f.number_field :phone, min: 1
   .field
     = f.label :product_type
     = f.text_field :product_type
@@ -22,25 +22,39 @@
     = f.label :color
     = f.text_field :color
   .field
-    = f.label :gender
-    = f.text_field :gender
+    %div Gender
+    .button-options
+      %ul#list-of-options
+        %li
+          = f.radio_button :gender, "Male"
+          = f.label :gender, "Male", value: "Male"
+        %li
+          = f.radio_button :gender, "Female"
+          = f.label :gender, "Female", value: "Female"
   .field
     = f.label :task_description
-    = f.text_area :task_description
+    = f.text_area :task_description, cols: 80, rows: 10
   .field
     = f.label :cost
-    = f.text_field :cost
-  .field
+    = "$ ".html_safe + cost_input_field(f, @shoe)
+  .field#paid-for-field
     = f.label :paid_for
-    = f.check_box :paid_for
-  .field#type_of_payment
-    = f.label :type_of_payment
-    = f.text_field :type_of_payment
+    = paid_for_checkbox(f, @shoe)
+  .field#type-of-payment{ class: @shoe.paid_for ? "" : "hidden" }
+    %div Type of payment
+    .button-options
+      %ul#list-of-options
+        %li
+          = payment_options_button(f, @shoe, "Card")
+          = f.label :type_of_payment, "Card", value: "Card"
+        %li
+          = payment_options_button(f, @shoe, "Cash")
+          = f.label :type_of_payment, "Cash", value: "Cash"
   .field
     = f.label :date_received
     = f.date_select :date_received
-  .field
+  .field#last-new-form-field
     = f.label :date_due
     = f.date_select :date_due
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => "save-button"

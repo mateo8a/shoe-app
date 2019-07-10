@@ -66,3 +66,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Haml
 gem "haml-rails", "~> 2.0"
+
+# Jquery
+gem 'jquery-rails'
