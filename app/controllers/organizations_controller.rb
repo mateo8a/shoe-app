@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin
 
   # GET /organizations
   # GET /organizations.json
@@ -70,5 +71,9 @@ class OrganizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:name)
+    end
+
+    def require_admin
+      raise StandardError.new("Not an admin") unless current_user.admin?
     end
 end
