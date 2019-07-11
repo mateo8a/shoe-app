@@ -20,15 +20,16 @@
           - else
             = link_to 'Log in', new_user_session_path
       .nav-buttons
-        %a{:href => new_shoe_path}
-          %button.nav-button New shoe
-        %a{:href => shoes_path}
-          %button.nav-button All shoes
-        - if current_user.try(:admin?)
-          %a{:href => organizations_path}
-            %button.nav-button Organizations
-          %a{:href => users_path}
-            %button.nav-button Users
+        - if current_user
+          %a{:href => new_shoe_path}
+            %button.nav-button New shoe
+          %a{:href => shoes_path}
+            %button.nav-button All shoes
+          - if current_user.try(:admin?)
+            %a{:href => organizations_path}
+              %button.nav-button Organizations
+            %a{:href => users_path}
+              %button.nav-button Users
     %p.notice= notice
     %p.alert= alert
     = yield
