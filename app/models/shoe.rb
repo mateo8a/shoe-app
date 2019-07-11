@@ -9,4 +9,6 @@ class Shoe < ApplicationRecord
   validates :type_of_payment, presence: true, if: -> { paid_for }
   validates :location, presence: true, if: -> { finished }
   validates :paid_for, presence: { message: "- Si el tipo de pago esta especificado, se debe marcar el item como pagado." }, if: -> { type_of_payment }
+
+  belongs_to :organization
 end

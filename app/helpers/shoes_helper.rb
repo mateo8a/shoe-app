@@ -17,9 +17,9 @@ module ShoesHelper
 
   def cost_input_field(f, shoe)
     if payment_options_disabled?(shoe)
-      f.text_field :cost, disabled: "disabled"
+      f.number_field :cost, disabled: "disabled"
     else
-      f.text_field :cost
+      f.number_field :cost, min: 0
     end
   end
 

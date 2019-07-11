@@ -11,7 +11,8 @@
     .app-header
       .topmost-header
         .app-title
-          %h1 Zapatos Ochoa
+          %h1
+            = header_title
         .auth-buttons
           - if user_signed_in?
             = "Hello, #{current_user.first_name} - ("
@@ -20,10 +21,16 @@
           - else
             = link_to 'Log in', new_user_session_path
       .nav-buttons
-        %a{:href => new_shoe_path}
-          %button.nav-button New shoe
-        %a{:href => shoes_path}
-          %button.nav-button All shoes
+        - if current_user.try(:organization)
+          %a{:href => new_shoe_path}
+            %button.nav-button New shoe
+          %a{:href => shoes_path}
+            %button.nav-button All shoes
+          - if current_user.try(:admin?)
+            %a{:href => organizations_path}
+              %button.nav-button Organizations
+            %a{:href => users_path}
+              %button.nav-button Users
     %p.notice= notice
     %p.alert= alert
     = yield

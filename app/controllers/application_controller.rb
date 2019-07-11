@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
   end
+
+  private
+
+  def require_admin
+    raise StandardError.new("Not an admin") unless current_user.admin?
+  end
 end
