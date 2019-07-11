@@ -53,8 +53,19 @@
   .field
     = f.label :date_received
     = f.date_select :date_received
-  .field#last-new-form-field
+  .field
     = f.label :date_due
     = f.date_select :date_due
+  - if Shoe.exists?(@shoe.id)
+    .field
+      = f.label :location
+      = f.text_field :location
+    .field
+      = f.label :finished, "Finished?"
+      = "Yes: ".html_safe + f.check_box(:finished)
+    .field#paid-for-field
+      = f.label :delivered, "Delivered?"
+      = "Yes: ".html_safe + f.check_box(:delivered)
+  .field
   .actions
     = f.submit 'Save', :class => "save-button"
