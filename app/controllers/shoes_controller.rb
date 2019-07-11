@@ -5,7 +5,7 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = Shoe.select { |s| s.organization == current_user.organization }
+    @shoes = Shoe.where(organization_id: current_user.organization.id)
   end
 
   # GET /shoes/1
