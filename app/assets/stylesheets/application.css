@@ -67,6 +67,12 @@
   background-color: #3e8e41;
 }
 
+/* Fonts */
+
+input, textarea, label, p, div {
+  font-size: 15px;
+}
+
 /* Footer */
 
 .footer {

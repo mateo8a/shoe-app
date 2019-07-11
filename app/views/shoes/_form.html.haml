@@ -33,7 +33,7 @@
           = f.label :gender, "Female", value: "Female"
   .field
     = f.label :task_description
-    = f.text_area :task_description, cols: 80, rows: 10
+    = f.text_area :task_description, cols: 80, rows: 8
   .field
     = f.label :cost
     = "$ ".html_safe + cost_input_field(f, @shoe)
