@@ -20,7 +20,7 @@
           - else
             = link_to 'Log in', new_user_session_path
       .nav-buttons
-        - if current_user
+        - if current_user.try(:organization)
           %a{:href => new_shoe_path}
             %button.nav-button New shoe
           %a{:href => shoes_path}
