@@ -70,7 +70,8 @@ class ShoesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def shoe_params
-    params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for)
+    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for)
+    permitted_params.merge(organization_id: current_user.organization.id)
   end
 
   def check_if_user_has_organization
