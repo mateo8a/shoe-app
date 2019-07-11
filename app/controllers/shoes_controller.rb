@@ -6,6 +6,10 @@ class ShoesController < ApplicationController
   # GET /shoes.json
   def index
     @shoes = Shoe.where(organization_id: current_user.organization.id)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /shoes/1

@@ -1,0 +1,9 @@
+= form_with url: shoes_path, method: :get do |f|
+  .field
+    = f.label :from_date
+    = f.date_select :from_date
+  .field
+    = f.label :to_date
+    = f.date_select :to_date
+  .actions
+    = f.submit "Submit"
