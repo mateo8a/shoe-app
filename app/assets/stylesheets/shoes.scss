@@ -50,15 +50,19 @@
   background:#DDD;
 }
 
-.new_shoe .field {
+#list-of-options input[disabled="disabled"] + label:hover {
+  cursor:not-allowed;
+}
+
+.shoe-form .field {
   padding-top: 10px;
 }
 
-.new_shoe #type-of-payment {
+.shoe-form #type-of-payment {
   padding-top: 0;
 }
 
-.new_shoe #paid-for-field {
+.shoe-form #paid-for-field {
   margin-bottom: 0;
 }
 
