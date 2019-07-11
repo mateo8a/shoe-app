@@ -1,5 +1,5 @@
 .search-options
-  = form_with url: shoes_path, scope: :search_options, method: :get do |f|
+  = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
     #search-received-date
       .field.search-by-date-checkbox
         = f.label :received_date
