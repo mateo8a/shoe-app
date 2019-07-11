@@ -52,16 +52,6 @@ class ShoesController < ApplicationController
     end
   end
 
-  # DELETE /shoes/1
-  # DELETE /shoes/1.json
-  def destroy
-    @shoe.destroy
-    respond_to do |format|
-      format.html { redirect_to shoes_url, notice: 'Shoe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_shoe
