@@ -11,7 +11,8 @@
     .app-header
       .topmost-header
         .app-title
-          %h1 Zapatos Ochoa
+          %h1
+            = header_title
         .auth-buttons
           - if user_signed_in?
             = "Hello, #{current_user.first_name} - ("
