@@ -9,7 +9,7 @@
   = @user.email
 %p
   %b Organization:
-  = @user.organization
+  = @user.organization.name
 
 = link_to 'Edit', edit_user_path(@user)
 \|

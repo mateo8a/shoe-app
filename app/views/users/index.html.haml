@@ -16,7 +16,7 @@
         %td= user.first_name
         %td= user.last_name
         %td= user.email
-        %td= user.organization
+        %td= user.organization.try(:name)
         %td= link_to 'Show', user
         %td= link_to 'Edit', edit_user_path(user)
 
