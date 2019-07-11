@@ -15,19 +15,19 @@ $(document).ready(function() {
     };
   });
 
-  $(".sort-by-date-checkbox").on("click", function(event) {
+  $(".search-by-date-checkbox").on("click", function(event) {
     event.stopPropagation();
 
-    if ($('#sorting_options_received_date').prop("checked")) {
-      $("#sort-received-date-input.hidden").removeClass("hidden");
+    if ($('#search_options_received_date').prop("checked")) {
+      $("#search-received-date-input.hidden").removeClass("hidden");
     } else {
-      $("#sort-received-date-input").addClass("hidden");
+      $("#search-received-date-input").addClass("hidden");
     };
 
-    if ($('#sorting_options_due_date').prop("checked")) {
-      $("#sort-due-date-input.hidden").removeClass("hidden");
+    if ($('#search_options_due_date').prop("checked")) {
+      $("#search-due-date-input.hidden").removeClass("hidden");
     } else {
-      $("#sort-due-date-input").addClass("hidden");
+      $("#search-due-date-input").addClass("hidden");
     };
   });
 });
