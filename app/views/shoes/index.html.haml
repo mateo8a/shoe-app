@@ -3,6 +3,7 @@
 %table
   %thead
     %tr
+      %th ID
       %th Owner
       %th Phone
       %th Product type
@@ -21,6 +22,7 @@
   %tbody
     - @shoes.each do |shoe|
       %tr
+        %td= shoe.id
         %td= shoe.owner
         %td= number_to_phone(shoe.phone)
         %td= shoe.product_type
