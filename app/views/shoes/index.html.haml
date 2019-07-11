@@ -3,30 +3,38 @@
 %table
   %thead
     %tr
-      %th Color
-      %th Date received
-      %th Date due
       %th Owner
       %th Phone
-      %th Type of payment
-      %th Cost
-      %th
+      %th Product type
+      %th Brand
+      %th Color
+      %th Cost ($)
+      %th Task description
+      %th Date received
+      %th Date due
+      %th Location
+      %th Finished?
+      %th Delivered?
       %th
       %th
 
   %tbody
     - @shoes.each do |shoe|
       %tr
-        %td= shoe.color
-        %td= shoe.date_received
-        %td= shoe.date_due
         %td= shoe.owner
-        %td= shoe.phone
-        %td= shoe.type_of_payment
+        %td= number_to_phone(shoe.phone)
+        %td= shoe.product_type
+        %td= shoe.brand
+        %td= shoe.color
         %td= shoe.cost
+        %td.task-description-column= shoe.task_description
+        %td.date-column= shoe.date_received
+        %td.date-column= shoe.date_due
+        %td= shoe.location
+        %td= human_boolean(shoe.finished)
+        %td= human_boolean(shoe.delivered)
         %td= link_to 'Show', shoe
         %td= link_to 'Edit', edit_shoe_path(shoe)
-        %td= link_to 'Destroy', shoe, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

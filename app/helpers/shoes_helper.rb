@@ -19,7 +19,7 @@ module ShoesHelper
     if payment_options_disabled?(shoe)
       f.number_field :cost, disabled: "disabled"
     else
-      f.number_field :cost, min: 0
+      f.number_field :cost, min: 0, step: ".01"
     end
   end
 

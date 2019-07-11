@@ -1,4 +1,4 @@
-= form_for @shoe do |f|
+= form_for @shoe, :html => {:class => 'shoe-form'} do |f|
   - if @shoe.errors.any?
     #error_explanation
       %h2= "#{pluralize(@shoe.errors.count, "error")} prohibited this shoe from being saved:"
@@ -33,13 +33,13 @@
           = f.label :gender, "Female", value: "Female"
   .field
     = f.label :task_description
-    = f.text_area :task_description, cols: 80, rows: 10
+    = f.text_area :task_description, cols: 80, rows: 8
   .field
     = f.label :cost
     = "$ ".html_safe + cost_input_field(f, @shoe)
   .field#paid-for-field
-    = f.label :paid_for
-    = paid_for_checkbox(f, @shoe)
+    = f.label :paid_for, "Paid for?"
+    = "Yes: ".html_safe + paid_for_checkbox(f, @shoe)
   .field#type-of-payment{ class: @shoe.paid_for ? "" : "hidden" }
     %div Type of payment
     .button-options
@@ -53,8 +53,19 @@
   .field
     = f.label :date_received
     = f.date_select :date_received
-  .field#last-new-form-field
+  .field
     = f.label :date_due
     = f.date_select :date_due
+  - if Shoe.exists?(@shoe.id)
+    .field
+      = f.label :location
+      = f.text_field :location
+    .field
+      = f.label :finished, "Finished?"
+      = "Yes: ".html_safe + f.check_box(:finished)
+    .field#paid-for-field
+      = f.label :delivered, "Delivered?"
+      = "Yes: ".html_safe + f.check_box(:delivered)
+  .field
   .actions
     = f.submit 'Save', :class => "save-button"

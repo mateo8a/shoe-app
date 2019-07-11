@@ -5,7 +5,7 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = Shoe.select { |s| s.organization == current_user.organization }
+    @shoes = Shoe.where(organization_id: current_user.organization.id)
   end
 
   # GET /shoes/1
@@ -52,16 +52,6 @@ class ShoesController < ApplicationController
     end
   end
 
-  # DELETE /shoes/1
-  # DELETE /shoes/1.json
-  def destroy
-    @shoe.destroy
-    respond_to do |format|
-      format.html { redirect_to shoes_url, notice: 'Shoe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_shoe
@@ -70,7 +60,7 @@ class ShoesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def shoe_params
-    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for)
+    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered)
     permitted_params.merge(organization_id: current_user.organization.id)
   end
 

@@ -50,19 +50,23 @@
   background:#DDD;
 }
 
-.new_shoe .field {
+#list-of-options input[disabled="disabled"] + label:hover {
+  cursor:not-allowed;
+}
+
+.shoe-form .field {
   padding-top: 10px;
 }
 
-.new_shoe #type-of-payment {
+.shoe-form #type-of-payment {
   padding-top: 0;
 }
 
-.new_shoe #paid-for-field {
+.shoe-form #paid-for-field {
   margin-bottom: 0;
 }
 
-#last-new-form-field {
+#bottom-of-form-padding {
   padding-bottom: 20px;
 }
 
@@ -99,4 +103,12 @@
 
 .back-button:hover {
   background-color: #c43333;
+}
+
+.task-description-column {
+  width: 350px;
+}
+
+.date-column {
+  width: 85px;
 }
