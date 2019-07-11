@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def require_admin
     raise StandardError.new("Not an admin") unless current_user.admin?
   end
+
+  def param_to_boolean(param)
+    ActiveRecord::Type::Boolean.new.deserialize(param)
+  end
 end

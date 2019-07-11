@@ -9,8 +9,8 @@ class ShoesController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        debugger
-        # ActiveRecord::Type::Boolean.new.deserialize()
+        # debugger
+        set_search_results
       end
     end
   end
@@ -74,6 +74,14 @@ class ShoesController < ApplicationController
   def check_if_user_has_organization
     if current_user
       render "users/organization_required" unless current_user.organization
+    end
+  end
+
+  def set_search_results
+    search_params = params[:search_options]
+    if param_to_boolean(search_params[:received_date])
+      received_date_from = Date.new(search_params["received_date_from(1i)"].to_i, search_params["received_date_from(2i)"].to_i, search_params["received_date_from(3i)"].to_i)
+      @shoes = @shoes.where(date_received: received_date_from.beginning_of_day..received_date_to.end_of_day)
     end
   end
 end
