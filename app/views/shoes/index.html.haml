@@ -27,9 +27,9 @@
         %td= shoe.brand
         %td= shoe.color
         %td= shoe.cost
-        %td#task-description-column= shoe.task_description
-        %td= shoe.date_received
-        %td= shoe.date_due
+        %td.task-description-column= shoe.task_description
+        %td.date-column= shoe.date_received
+        %td.date-column= shoe.date_due
         %td= shoe.location
         %td= human_boolean(shoe.finished)
         %td= human_boolean(shoe.delivered)
