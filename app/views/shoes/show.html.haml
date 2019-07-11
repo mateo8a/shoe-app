@@ -1,6 +1,33 @@
 %p
+  %b Owner:
+  = @shoe.owner
+%p
+  %b Phone:
+  = @shoe.phone
+%p
+  %b Product type:
+  = @shoe.product_type
+%p
+  %b Brand:
+  = @shoe.brand
+%p
   %b Color:
   = @shoe.color
+%p
+  %b Gender:
+  = @shoe.gender
+%p
+  %b Task description:
+  = @shoe.task_description
+%p
+  %b Cost:
+  = @shoe.cost
+%p
+  %b Paid for?:
+  = human_boolean(@shoe.paid_for)
+%p
+  %b Type of payment:
+  = @shoe.type_of_payment
 %p
   %b Date received:
   = @shoe.date_received
@@ -8,17 +35,14 @@
   %b Date due:
   = @shoe.date_due
 %p
-  %b Owner:
-  = @shoe.owner
+  %b Location:
+  = @shoe.location
 %p
-  %b Phone:
-  = @shoe.phone
+  %b Finished?:
+  = human_boolean(@shoe.finished)
 %p
-  %b Type of payment:
-  = @shoe.type_of_payment
-%p
-  %b Cost:
-  = @shoe.cost
+  %b Delivered?:
+  = human_boolean(@shoe.delivered)
 
 = link_to 'Edit', edit_shoe_path(@shoe)
 \|

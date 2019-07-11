@@ -38,8 +38,8 @@
     = f.label :cost
     = "$ ".html_safe + cost_input_field(f, @shoe)
   .field#paid-for-field
-    = f.label :paid_for
-    = paid_for_checkbox(f, @shoe)
+    = f.label :paid_for, "Paid for?"
+    = "Yes: ".html_safe + paid_for_checkbox(f, @shoe)
   .field#type-of-payment{ class: @shoe.paid_for ? "" : "hidden" }
     %div Type of payment
     .button-options
