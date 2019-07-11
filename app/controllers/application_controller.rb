@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_if_user_has_organization
 
   protected
 
@@ -12,5 +13,11 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     raise StandardError.new("Not an admin") unless current_user.admin?
+  end
+
+  def check_if_user_has_organization
+    if current_user
+      render "users/organization_required" unless current_user.organization
+    end
   end
 end
