@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :organizations
+  resources :organizations, only: [:index, :show, :new, :edit, :create, :update]
   resources :shoes
   devise_for :users
   resources :users, only: [:index, :show, :update, :edit]
