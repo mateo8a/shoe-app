@@ -14,4 +14,20 @@ $(document).ready(function() {
       $("#shoe_type_of_payment_cash").prop( "checked", false );
     };
   });
+
+  $(".sort-by-date-checkbox").on("click", function(event) {
+    event.stopPropagation();
+
+    if ($('#sorting_options_received_date').prop("checked")) {
+      $("#sort-received-date-input.hidden").removeClass("hidden");
+    } else {
+      $("#sort-received-date-input").addClass("hidden");
+    };
+
+    if ($('#sorting_options_due_date').prop("checked")) {
+      $("#sort-due-date-input.hidden").removeClass("hidden");
+    } else {
+      $("#sort-due-date-input").addClass("hidden");
+    };
+  });
 });

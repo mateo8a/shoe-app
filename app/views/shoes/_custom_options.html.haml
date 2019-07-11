@@ -1,9 +1,26 @@
-= form_with url: shoes_path, method: :get do |f|
-  .field
-    = f.label :from_date
-    = f.date_select :from_date
-  .field
-    = f.label :to_date
-    = f.date_select :to_date
+= form_with url: shoes_path, scope: :sorting_options, method: :get do |f|
+  #sort-received-date
+    .field.sort-by-date-checkbox
+      = f.label :received_date
+      = f.check_box :received_date
+    #sort-received-date-input.hidden
+      .field
+        = f.label :received_date_from
+        = f.date_select :received_date_from
+      .field
+        = f.label :received_date_to
+        = f.date_select :received_date_to
+
+  #sort-due-date
+    .field.sort-by-date-checkbox
+      = f.label :due_date
+      = f.check_box :due_date
+    #sort-due-date-input.hidden
+      .field
+        = f.label :due_date_from
+        = f.date_select :due_date_from
+      .field
+        = f.label :due_date_to
+        = f.date_select :due_date_to
   .actions
-    = f.submit "Submit"
+    = f.submit "Search"
