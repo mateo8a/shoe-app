@@ -16,6 +16,7 @@
     = @user.email
   .field
     = f.label :organization
-    = f.number_field :organization_id
+    = #f.number_field :organization_id
+    = f.collection_select :organization_id, Organization.all, :id, :name
   .actions
     = f.submit 'Save', :class => "save-button"
