@@ -18,16 +18,16 @@ $(document).ready(function() {
   $(".search-by-date-checkbox").on("click", function(event) {
     event.stopPropagation();
 
-    if ($('#search_options_received_date').prop("checked")) {
-      $("#search-received-date-input.hidden").removeClass("hidden");
+    if ($('#search_options_date_received').prop("checked")) {
+      $("#search-date-received-input.hidden").removeClass("hidden");
     } else {
-      $("#search-received-date-input").addClass("hidden");
+      $("#search-date-received-input").addClass("hidden");
     };
 
-    if ($('#search_options_due_date').prop("checked")) {
-      $("#search-due-date-input.hidden").removeClass("hidden");
+    if ($('#search_options_date_due').prop("checked")) {
+      $("#search-date-due-input.hidden").removeClass("hidden");
     } else {
-      $("#search-due-date-input").addClass("hidden");
+      $("#search-date-due-input").addClass("hidden");
     };
   });
 });

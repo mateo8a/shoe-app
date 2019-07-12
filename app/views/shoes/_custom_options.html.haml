@@ -1,27 +1,27 @@
 .search-options
   = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
-    #search-received-date
+    #search-date-received
       .field.search-by-date-checkbox
-        = f.label :received_date
-        = f.check_box :received_date
-      #search-received-date-input.hidden
+        = f.label :date_received
+        = f.check_box :date_received
+      #search-date-received-input.hidden
         .field
-          = f.label :received_date_from
-          = f.date_select :received_date_from
+          = f.label :date_received_from
+          = f.date_select :date_received_from
         .field
-          = f.label :received_date_to
-          = f.date_select :received_date_to
+          = f.label :date_received_to
+          = f.date_select :date_received_to
 
-    #search-due-date
+    #search-date-due
       .field.search-by-date-checkbox
-        = f.label :due_date
-        = f.check_box :due_date
-      #search-due-date-input.hidden
+        = f.label :date_due
+        = f.check_box :date_due
+      #search-date-due-input.hidden
         .field
-          = f.label :due_date_from
-          = f.date_select :due_date_from
+          = f.label :date_due_from
+          = f.date_select :date_due_from
         .field
-          = f.label :due_date_to
-          = f.date_select :due_date_to
+          = f.label :date_due_to
+          = f.date_select :date_due_to
     .actions
       = f.submit "Search"
