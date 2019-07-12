@@ -81,7 +81,14 @@ class ShoesController < ApplicationController
     search_params = params[:search_options]
     if param_to_boolean(search_params[:date_received])
       date_received_from = Date.new(search_params["date_received_from(1i)"].to_i, search_params["date_received_from(2i)"].to_i, search_params["date_received_from(3i)"].to_i)
-      @shoes = @shoes.where(date_received: date_received_from.beginning_of_day..date_received_to.end_of_day)
+      date_received_to = Date.new(search_params["date_received_to(1i)"].to_i, search_params["date_received_to(2i)"].to_i, search_params["date_received_to(3i)"].to_i)
+      @shoes = @shoes.where(date_received: date_received_from..date_received_to)
+    end
+
+    if param_to_boolean(search_params[:date_due])
+      date_due_from = Date.new(search_params["date_due_from(1i)"].to_i, search_params["date_due_from(2i)"].to_i, search_params["date_due_from(3i)"].to_i)
+      date_due_to = Date.new(search_params["date_due_to(1i)"].to_i, search_params["date_due_to(2i)"].to_i, search_params["date_due_to(3i)"].to_i)
+      @shoes = @shoes.where(date_due: date_due_from..date_due_to)
     end
   end
 end
