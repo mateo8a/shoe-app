@@ -18,18 +18,36 @@ $(document).ready(function() {
   $(".search-option-checkbox").on("click", function(event) {
     event.stopPropagation();
 
+    switch(event.target.id) {
+      case "search_options_date_received":
+        toggleDateReceivedOptions();
+        break;
+      case "search_options_date_due":
+        toggleDateDueOptions();
+        break;
+      case "search_options_type_of_payment":
+        toggleTypeOfPaymentOptions();
+        break;
+    }
+  });
+
+  toggleDateReceivedOptions = function() {
     if ($('#search_options_date_received').prop("checked")) {
       $("#search-date-received-input.hidden").removeClass("hidden");
     } else {
       $("#search-date-received-input").addClass("hidden");
     };
+  }
 
+  toggleDateDueOptions = function () {
     if ($('#search_options_date_due').prop("checked")) {
       $("#search-date-due-input.hidden").removeClass("hidden");
     } else {
       $("#search-date-due-input").addClass("hidden");
     };
+  }
 
+  toggleTypeOfPaymentOptions = function() {
     if ($('#search_options_type_of_payment').prop("checked")) {
       $("#search-type-of-payment-input.hidden").removeClass("hidden");
     } else {
@@ -38,5 +56,5 @@ $(document).ready(function() {
       $("#search_options_type_of_payment_card").prop( "checked", false );
       $("#search_options_type_of_payment_cash").prop( "checked", false );
     };
-  });
+  }
 });
