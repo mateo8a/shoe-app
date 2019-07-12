@@ -28,6 +28,7 @@ module ShoesHelper
     shoes = date_received_search(search_params, shoes)
     shoes = date_due_search(search_params, shoes)
     shoes = type_of_payment_search(search_params, shoes)
+    # shoes = paid_for_search(search_params, shoes)
     shoes
   end
 
@@ -55,6 +56,11 @@ module ShoesHelper
       shoes = shoes.where(type_of_payment: search_params[:type_of_payment])
     end
     shoes
+  end
+
+  def paid_for_search(search_params, shoes)
+    if search_params[:paid_for]
+    end
   end
 
   def extract_date_from_params(search_params, param)

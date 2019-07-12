@@ -36,5 +36,18 @@
           %li
             = f.radio_button :type_of_payment, "Cash"
             = f.label :type_of_payment, "Cash", value: "Cash"
+
+    #search-by-paid-for
+      .field.search-option-checkbox
+        = f.label :search_by_paid_for, "Paid for?"
+        = f.check_box :search_by_paid_for
+      #search-paid-for-input.button-options.hidden
+        %ul#list-of-options
+          %li
+            = f.radio_button :paid_for, "1"
+            = f.label :paid_for, "Yes, paid for", value: "1"
+          %li
+            = f.radio_button :paid_for, "0"
+            = f.label :paid_for, "Not paid for", value: "0"
     .actions
       = f.submit "Search"

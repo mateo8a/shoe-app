@@ -28,6 +28,9 @@ $(document).ready(function() {
       case "search_options_search_by_type_of_payment":
         toggleTypeOfPaymentOptions();
         break;
+      case "search_options_search_by_paid_for":
+        togglePaidForOptions();
+        break;
     }
   });
 
@@ -55,6 +58,17 @@ $(document).ready(function() {
       // remove checked from both payment options
       $("#search_options_type_of_payment_card").prop( "checked", false );
       $("#search_options_type_of_payment_cash").prop( "checked", false );
+    };
+  }
+
+  togglePaidForOptions = function() {
+    if ($('#search_options_search_by_paid_for').prop("checked")) {
+      $("#search-paid-for-input.hidden").removeClass("hidden");
+    } else {
+      $("#search-paid-for-input").addClass("hidden");
+      // remove checked from both payment options
+      $("#search_options_paid_for_1").prop( "checked", false );
+      $("#search_options_paid_for_0").prop( "checked", false );
     };
   }
 });
