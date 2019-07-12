@@ -10,7 +10,7 @@ class ShoesController < ApplicationController
       format.html
       format.js do
         # debugger
-        set_search_results
+        @shoes = helpers.search_results(@shoes)
       end
     end
   end
@@ -75,11 +75,5 @@ class ShoesController < ApplicationController
     if current_user
       render "users/organization_required" unless current_user.organization
     end
-  end
-
-  def set_search_results
-    search_params = params[:search_options]
-    @shoes = helpers.date_received_search(search_params, @shoes)
-    @shoes = helpers.date_due_search(search_params, @shoes)
   end
 end

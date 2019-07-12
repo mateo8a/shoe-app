@@ -23,6 +23,14 @@ module ShoesHelper
     end
   end
 
+  def search_results(shoes)
+    search_params = params[:search_options]
+    shoes = date_received_search(search_params, shoes)
+    shoes = date_due_search(search_params, shoes)
+    shoes
+  end
+
+  private
   def date_received_search(search_params, shoes)
     if param_to_boolean(search_params[:date_received])
       date_received_from = Date.new(search_params["date_received_from(1i)"].to_i, search_params["date_received_from(2i)"].to_i, search_params["date_received_from(3i)"].to_i)
@@ -41,7 +49,6 @@ module ShoesHelper
     shoes
   end
 
-  private
   def param_to_boolean(param)
     ActiveRecord::Type::Boolean.new.deserialize(param)
   end
