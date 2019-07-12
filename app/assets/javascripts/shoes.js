@@ -25,7 +25,7 @@ $(document).ready(function() {
       case "search_options_date_due":
         toggleDateDueOptions();
         break;
-      case "search_options_type_of_payment":
+      case "search_options_search_by_type_of_payment":
         toggleTypeOfPaymentOptions();
         break;
     }
@@ -48,7 +48,7 @@ $(document).ready(function() {
   }
 
   toggleTypeOfPaymentOptions = function() {
-    if ($('#search_options_type_of_payment').prop("checked")) {
+    if ($('#search_options_search_by_type_of_payment').prop("checked")) {
       $("#search-type-of-payment-input.hidden").removeClass("hidden");
     } else {
       $("#search-type-of-payment-input").addClass("hidden");
