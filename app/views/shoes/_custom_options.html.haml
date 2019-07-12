@@ -1,7 +1,7 @@
 .search-options
   = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
-    #search-date-received
-      .field.search-by-date-checkbox
+    #search-by-date-received
+      .field.search-option-checkbox
         = f.label :date_received
         = f.check_box :date_received
       #search-date-received-input.hidden
@@ -12,8 +12,8 @@
           = f.label :date_received_to
           = f.date_select :date_received_to
 
-    #search-date-due
-      .field.search-by-date-checkbox
+    #search-by-date-due
+      .field.search-option-checkbox
         = f.label :date_due
         = f.check_box :date_due
       #search-date-due-input.hidden
@@ -23,5 +23,18 @@
         .field
           = f.label :date_due_to
           = f.date_select :date_due_to
+
+    #search-by-type-of-payment
+      .field.search-option-checkbox
+        = f.label :type_of_payment
+        = f.check_box :type_of_payment
+      #search-type-of-payment-input.button-options.hidden
+        %ul#list-of-options
+          %li
+            = f.radio_button :type_of_payment, "Card"
+            = f.label :type_of_payment, "Card", value: "Card"
+          %li
+            = f.radio_button :type_of_payment, "Cash"
+            = f.label :type_of_payment, "Cash", value: "Cash"
     .actions
       = f.submit "Search"

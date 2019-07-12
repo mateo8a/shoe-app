@@ -15,7 +15,7 @@ $(document).ready(function() {
     };
   });
 
-  $(".search-by-date-checkbox").on("click", function(event) {
+  $(".search-option-checkbox").on("click", function(event) {
     event.stopPropagation();
 
     if ($('#search_options_date_received').prop("checked")) {
@@ -28,6 +28,15 @@ $(document).ready(function() {
       $("#search-date-due-input.hidden").removeClass("hidden");
     } else {
       $("#search-date-due-input").addClass("hidden");
+    };
+
+    if ($('#search_options_type_of_payment').prop("checked")) {
+      $("#search-type-of-payment-input.hidden").removeClass("hidden");
+    } else {
+      $("#search-type-of-payment-input").addClass("hidden");
+      // remove checked from both payment options
+      $("#search_options_type_of_payment_card").prop( "checked", false );
+      $("#search_options_type_of_payment_cash").prop( "checked", false );
     };
   });
 });
