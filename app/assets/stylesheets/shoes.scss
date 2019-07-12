@@ -112,3 +112,29 @@
 .date-column {
   width: 85px;
 }
+
+.search-options {
+  display: block;
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+
+#search-date-received, #search-date-due {
+  float: left;
+  width: 205px;
+  padding: 0 10px;
+}
+
+.search-options .actions {
+  clear: both;
+  padding-top: 10px;
+  bottom: 0;
+  position: absolute;
+  margin-bottom: 25px;
+}
+
+.search-form {
+  height: 100%;
+}
+

@@ -5,7 +5,14 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = Shoe.where(organization_id: current_user.organization.id)
+    @shoes = Shoe.where(organization_id: current_user.organization.id).order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js do
+        # debugger
+        @shoes = helpers.search_results(@shoes)
+      end
+    end
   end
 
   # GET /shoes/1
