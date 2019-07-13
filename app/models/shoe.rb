@@ -22,8 +22,23 @@ class Shoe < ApplicationRecord
       csv << attributes
 
       all.each do |user|
-        csv << attributes.map{ |attr| user.send(attr) }
+        csv << attributes.map do |attr|
+          if boolean_attributes.include?(attr)
+            human_boolean(user.send(attr))
+          else
+            user.send(attr)
+          end
+        end
       end
     end
+  end
+
+  private
+  def self.boolean_attributes
+    %w{paid_for finished delivered}
+  end
+
+  def self.human_boolean(boolean)
+    boolean ? "Yes" : "No"
   end
 end
