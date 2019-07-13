@@ -15,6 +15,8 @@ class Shoe < ApplicationRecord
 
   belongs_to :organization
 
+  acts_as_sequenced scope: :organization_id, column: :id_within_organization, start_at: 1000
+
   def self.to_csv
     attributes = %w{id owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered}
 
