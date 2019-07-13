@@ -27,6 +27,8 @@ module ShoesHelper
     search_params = params[:search_options]
     shoes = date_received_search(search_params, shoes)
     shoes = date_due_search(search_params, shoes)
+    shoes = type_of_payment_search(search_params, shoes)
+    shoes = paid_for_search(search_params, shoes)
     shoes
   end
 
@@ -45,6 +47,21 @@ module ShoesHelper
       date_due_from = extract_date_from_params(search_params, "date_due_from")
       date_due_to = extract_date_from_params(search_params, "date_due_to")
       shoes = shoes.where(date_due: date_due_from..date_due_to)
+    end
+    shoes
+  end
+
+  def type_of_payment_search(search_params, shoes)
+    if param_to_boolean(search_params[:search_by_type_of_payment]) && search_params[:type_of_payment]
+      shoes = shoes.where(type_of_payment: search_params[:type_of_payment])
+    end
+    shoes
+  end
+
+  def paid_for_search(search_params, shoes)
+    if param_to_boolean(search_params[:search_by_paid_for]) && search_params[:paid_for]
+      paid_for = param_to_boolean(search_params[:paid_for])
+      shoes = shoes.where(paid_for: paid_for)
     end
     shoes
   end

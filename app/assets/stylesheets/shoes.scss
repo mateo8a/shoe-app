@@ -16,7 +16,7 @@
 #list-of-options li {
   float:left;
   margin:0 5px 0 0;
-  width:100px;
+  width:120px;
   height:40px;
   position:relative;
 }
@@ -120,9 +120,15 @@
   position: relative;
 }
 
-#search-date-received, #search-date-due {
+#search-by-date-received, #search-by-date-due {
   float: left;
   width: 205px;
+  padding: 0 10px;
+}
+
+#search-by-type-of-payment, #search-by-paid-for {
+  float: left;
+  width: 145px;
   padding: 0 10px;
 }
 

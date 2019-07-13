@@ -1,3 +1,5 @@
+require 'csv'
+
 class Shoe < ApplicationRecord
   validates :owner, presence: true
   validates :phone, presence: true
@@ -12,4 +14,31 @@ class Shoe < ApplicationRecord
   validates :finished, presence: true, if: -> { delivered }
 
   belongs_to :organization
+
+  def self.to_csv
+    attributes = %w{id owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map do |attr|
+          if boolean_attributes.include?(attr)
+            human_boolean(user.send(attr))
+          else
+            user.send(attr)
+          end
+        end
+      end
+    end
+  end
+
+  private
+  def self.boolean_attributes
+    %w{paid_for finished delivered}
+  end
+
+  def self.human_boolean(boolean)
+    boolean ? "Yes" : "No"
+  end
 end
