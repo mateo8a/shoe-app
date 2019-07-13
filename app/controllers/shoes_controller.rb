@@ -66,6 +66,7 @@ class ShoesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_shoe
     @shoe = Shoe.find(params[:id])
+    raise StandardError.new("Shoe does not belong to user's organization") unless @shoe.organization == current_user.organization
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
