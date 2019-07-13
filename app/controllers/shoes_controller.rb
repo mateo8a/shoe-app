@@ -9,8 +9,11 @@ class ShoesController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
-        # debugger
         @shoes = helpers.search_results(@shoes)
+      end
+      format.csv do
+        @shoes = helpers.search_results(@shoes) if params[:search_options]
+        send_data(@shoes.to_csv, filename: "items-#{Time.now.strftime('%Y-%m-%d_%H-%M-%S')}.csv")
       end
     end
   end
