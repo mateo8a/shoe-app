@@ -18,10 +18,11 @@ class Shoe < ApplicationRecord
   acts_as_sequenced scope: :organization_id, column: :id_within_organization, start_at: 1000
 
   def self.to_csv
-    attributes = %w{id owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered}
+    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered}
+    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Location Finished? Delivered?}
 
     CSV.generate(headers: true) do |csv|
-      csv << attributes
+      csv << header
 
       all.each do |user|
         csv << attributes.map do |attr|
