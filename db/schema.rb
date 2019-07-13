@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_192038) do
+ActiveRecord::Schema.define(version: 2019_07_13_024632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_192038) do
     t.boolean "paid_for", default: false
     t.string "location"
     t.bigint "organization_id"
+    t.integer "id_within_organization", null: false
     t.index ["organization_id"], name: "index_shoes_on_organization_id"
   end
 
