@@ -69,3 +69,6 @@ gem "haml-rails", "~> 2.0"
 
 # Jquery
 gem 'jquery-rails'
+
+# To add ID within organization
+gem 'sequenced'
