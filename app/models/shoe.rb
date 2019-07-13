@@ -12,6 +12,7 @@ class Shoe < ApplicationRecord
   validates :paid_for, presence: { message: "- Si el tipo de pago esta especificado, se debe marcar el item como pagado." }, if: -> { type_of_payment }
   validates :location, presence: true, if: -> { finished }
   validates :finished, presence: true, if: -> { delivered }
+  validate :date_due_greater_than_date_received
 
   belongs_to :organization
 
@@ -37,6 +38,12 @@ class Shoe < ApplicationRecord
   end
 
   private
+  def date_due_greater_than_date_received
+    if date_due < date_received
+      errors.add(:date_due, "can't be before date received")
+    end
+  end
+
   def self.boolean_attributes
     %w{paid_for finished delivered}
   end
