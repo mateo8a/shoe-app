@@ -31,6 +31,7 @@ module ShoesHelper
     shoes = paid_for_search(search_params, shoes)
     shoes = delivered_search(search_params, shoes)
     shoes = id_search(search_params, shoes)
+    shoes = phone_search(search_params, shoes)
     shoes
   end
 
@@ -85,6 +86,15 @@ module ShoesHelper
       id_within_organization = search_params[:id].to_i
       shoes = shoes.where(id_within_organization: id_within_organization)
     end
+    shoes
+  end
+
+  def phone_search(search_params, shoes)
+    if param_to_boolean(search_params[:search_by_phone_number]) && search_params[:phone_number]
+      phone = search_params[:phone_number].to_i
+      shoes = shoes.where(phone: phone)
+    end
+    shoes
   end
 
   def extract_date_from_params(search_params, param)
