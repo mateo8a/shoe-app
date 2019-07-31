@@ -25,15 +25,6 @@ $(document).ready(function() {
       case "search_options_date_due":
         toggleDateDueOptions();
         break;
-      case "search_options_search_by_type_of_payment":
-        toggleTypeOfPaymentOptions();
-        break;
-      case "search_options_search_by_paid_for":
-        togglePaidForOptions();
-        break;
-      case "search_options_search_by_delivered":
-        toggleDeliveredOptions();
-        break;
     }
   });
 
@@ -50,39 +41,6 @@ $(document).ready(function() {
       $("#search-date-due-input.hidden").removeClass("hidden");
     } else {
       $("#search-date-due-input").addClass("hidden");
-    };
-  }
-
-  toggleTypeOfPaymentOptions = function() {
-    if ($('#search_options_search_by_type_of_payment').prop("checked")) {
-      $("#search-type-of-payment-input.hidden").removeClass("hidden");
-    } else {
-      $("#search-type-of-payment-input").addClass("hidden");
-      // remove checked from both payment options
-      $("#search_options_type_of_payment_card").prop( "checked", false );
-      $("#search_options_type_of_payment_cash").prop( "checked", false );
-    };
-  }
-
-  togglePaidForOptions = function() {
-    if ($('#search_options_search_by_paid_for').prop("checked")) {
-      $("#search-paid-for-input.hidden").removeClass("hidden");
-    } else {
-      $("#search-paid-for-input").addClass("hidden");
-      // remove checked from both payment options
-      $("#search_options_paid_for_1").prop( "checked", false );
-      $("#search_options_paid_for_0").prop( "checked", false );
-    };
-  }
-
-  toggleDeliveredOptions = function() {
-    if ($('#search_options_search_by_delivered').prop("checked")) {
-      $("#search-delivered-input.hidden").removeClass("hidden");
-    } else {
-      $("#search-delivered-input").addClass("hidden");
-      // remove checked from both payment options
-      $("#search_options_delivered_1").prop( "checked", false );
-      $("#search_options_delivered_0").prop( "checked", false );
     };
   }
 

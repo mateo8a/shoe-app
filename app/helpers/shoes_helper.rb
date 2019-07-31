@@ -23,64 +23,92 @@ module ShoesHelper
     end
   end
 
-  def filter_delivered
-    if search_params && param_to_boolean(search_params[:search_by_delivered]) && search_params[:delivered]
-      show_all_items = param_to_boolean(search_params[:delivered])
-      if show_all_items
-        shoes = Shoe.where(organization_id: current_user.organization.id).order(created_at: :desc)
-      else
-        shoes = Shoe.where(organization_id: current_user.organization.id, delivered: true).order(created_at: :desc)
-      end
-    else
-      shoes = Shoe.where(organization_id: current_user.organization.id, delivered: false).order(created_at: :desc)
-    end
-    shoes
-  end
-
-  def search_results(shoes)
-    shoes = date_received_search(search_params, shoes)
-    shoes = date_due_search(search_params, shoes)
-    shoes = type_of_payment_search(search_params, shoes)
-    shoes = paid_for_search(search_params, shoes)
-    shoes
+  def search_results
+    setup_shoes_search
+    date_received_search(search_params)
+    date_due_search(search_params)
+    type_of_payment_search(search_params)
+    paid_for_search(search_params)
+    delivered_search(search_params)
+    id_search(search_params)
+    phone_search(search_params)
+    name_search(search_params)
+    @shoes_search
   end
 
   private
+  def setup_shoes_search
+    @shoes_search = Shoe.where(organization_id: current_user.organization.id).order(created_at: :desc)
+  end
+
   def search_params
     params[:search_options]
   end
 
-  def date_received_search(search_params, shoes)
+  def date_received_search(search_params)
     if param_to_boolean(search_params[:date_received])
       date_received_from = extract_date_from_params(search_params, "date_received_from")
       date_received_to = extract_date_from_params(search_params, "date_received_to")
-      shoes = shoes.where(date_received: date_received_from..date_received_to)
+      @shoes_search = @shoes_search.where(date_received: date_received_from..date_received_to)
     end
-    shoes
+    @shoes_search
   end
 
-  def date_due_search(search_params, shoes)
+  def date_due_search(search_params)
     if param_to_boolean(search_params[:date_due])
       date_due_from = extract_date_from_params(search_params, "date_due_from")
       date_due_to = extract_date_from_params(search_params, "date_due_to")
-      shoes = shoes.where(date_due: date_due_from..date_due_to)
+      @shoes_search = @shoes_search.where(date_due: date_due_from..date_due_to)
     end
-    shoes
+    @shoes_search
   end
 
-  def type_of_payment_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_type_of_payment]) && search_params[:type_of_payment]
-      shoes = shoes.where(type_of_payment: search_params[:type_of_payment])
+  def type_of_payment_search(search_params)
+    if search_params[:type_of_payment]
+      @shoes_search = @shoes_search.where(type_of_payment: search_params[:type_of_payment])
     end
-    shoes
+    @shoes_search
   end
 
-  def paid_for_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_paid_for]) && search_params[:paid_for]
+  def paid_for_search(search_params)
+    if search_params[:paid_for]
       paid_for = param_to_boolean(search_params[:paid_for])
-      shoes = shoes.where(paid_for: paid_for)
+      @shoes_search = @shoes_search.where(paid_for: paid_for)
     end
-    shoes
+    @shoes_search
+  end
+
+  def delivered_search(search_params)
+    if search_params[:delivered]
+      delivered = param_to_boolean(search_params[:delivered])
+      @shoes_search = @shoes_search.where(delivered: delivered).order(created_at: :desc)
+    end
+    @shoes_search
+  end
+
+  def id_search(search_params)
+    if !search_params[:id].blank?
+      id_within_organization = search_params[:id].to_i
+      @shoes_search = @shoes_search.where(id_within_organization: id_within_organization)
+    end
+    @shoes_search
+  end
+
+  def phone_search(search_params)
+    if !search_params[:phone_number].blank?
+      phone = search_params[:phone_number].to_i
+      @shoes_search = @shoes_search.where(phone: phone)
+    end
+    @shoes_search
+  end
+
+  def name_search(search_params)
+    if !search_params[:name].blank?
+      search_name = search_params[:name]
+      shoes_table = Shoe.arel_table
+      @shoes_search = @shoes_search.where(shoes_table[:owner].matches("%#{search_name}%"))
+    end
+    @shoes_search
   end
 
   def extract_date_from_params(search_params, param)

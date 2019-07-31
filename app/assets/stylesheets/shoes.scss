@@ -105,8 +105,12 @@
   background-color: #c43333;
 }
 
-#shoe_phone {
+.phone-input-field {
   width: 167px;
+}
+
+.phone-input-search-field {
+  width: 120px;
 }
 
 .task-description-column {
@@ -119,31 +123,46 @@
 
 .search-options {
   display: block;
-  height: 200px;
+  min-height: 200px;
   width: 100%;
   position: relative;
+  overflow: auto;
+  padding-bottom: 10px;
 }
 
 .search-date-field {
   float: left;
   width: 205px;
-  padding: 0 10px;
+  padding: 5px 10px;
 }
 
 .search-checkbox-field {
   float: left;
   width: 145px;
-  padding: 0 10px;
+  padding: 5px 10px;
+}
+
+.search-id-field {
+  float: left;
+  width: 105px;
+  padding: 5px 10px;
+}
+
+#search_options_id {
+  width: 85px;
 }
 
 .search-options .actions {
+  padding-top: 15px;
+  float: left;
   clear: both;
-  padding-top: 10px;
-  bottom: 0;
-  position: absolute;
-  margin-bottom: 25px;
+
 }
 
 .search-form {
   height: 100%;
+}
+
+#search-parameters {
+  float: left;
 }
