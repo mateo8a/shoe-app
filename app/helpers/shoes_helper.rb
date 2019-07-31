@@ -23,8 +23,21 @@ module ShoesHelper
     end
   end
 
+  def filter_delivered
+    if search_params && param_to_boolean(search_params[:search_by_delivered]) && search_params[:delivered]
+      show_all_items = param_to_boolean(search_params[:delivered])
+      if show_all_items
+        shoes = Shoe.where(organization_id: current_user.organization.id).order(created_at: :desc)
+      else
+        shoes = Shoe.where(organization_id: current_user.organization.id, delivered: true).order(created_at: :desc)
+      end
+    else
+      shoes = Shoe.where(organization_id: current_user.organization.id, delivered: false).order(created_at: :desc)
+    end
+    shoes
+  end
+
   def search_results(shoes)
-    search_params = params[:search_options]
     shoes = date_received_search(search_params, shoes)
     shoes = date_due_search(search_params, shoes)
     shoes = type_of_payment_search(search_params, shoes)
@@ -33,6 +46,10 @@ module ShoesHelper
   end
 
   private
+  def search_params
+    params[:search_options]
+  end
+
   def date_received_search(search_params, shoes)
     if param_to_boolean(search_params[:date_received])
       date_received_from = extract_date_from_params(search_params, "date_received_from")

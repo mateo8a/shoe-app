@@ -5,7 +5,7 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = Shoe.where(organization_id: current_user.organization.id, delivered: false).order(created_at: :desc)
+    @shoes = helpers.filter_delivered
     respond_to do |format|
       format.html
       format.js do
