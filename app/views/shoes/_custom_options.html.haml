@@ -2,8 +2,8 @@
   = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
     #search-by-id.search-text-field
       .field.search-option-checkbox
-        = f.label :id
-        = f.check_box :id
+        = f.label :search_by_id, "ID"
+        = f.check_box :search_by_id
       #search-id-input.button-options.hidden
         = f.number_field :id, min: 1
 
@@ -65,10 +65,10 @@
         %ul#list-of-options
           %li
             = f.radio_button :delivered, "1"
-            = f.label :delivered, "All items", value: "1"
+            = f.label :delivered, "Delivered", value: "1"
           %li
             = f.radio_button :delivered, "0"
-            = f.label :delivered, "Only delivered", value: "0"
+            = f.label :delivered, "Undelivered", value: "0"
 
     .actions
       = f.submit "Search"

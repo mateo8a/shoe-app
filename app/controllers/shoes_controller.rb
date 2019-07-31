@@ -5,11 +5,11 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = helpers.filter_delivered
+    @shoes = Shoe.where(organization_id: current_user.organization.id, delivered: false).order(created_at: :desc)
     respond_to do |format|
       format.html
       format.js do
-        @shoes = helpers.search_results(@shoes)
+        @shoes = helpers.search_results
       end
       format.csv do
         @shoes = helpers.search_results(@shoes) if params[:search_options]

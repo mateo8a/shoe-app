@@ -34,7 +34,7 @@ $(document).ready(function() {
       case "search_options_search_by_delivered":
         toggleDeliveredOptions();
         break;
-      case "search_options_id":
+      case "search_options_search_by_id":
         toggleIdOptions();
         break;
     }
@@ -90,7 +90,7 @@ $(document).ready(function() {
   }
 
   toggleIdOptions = function () {
-    if ($('#search_options_id').prop("checked")) {
+    if ($('#search_options_search_by_id').prop("checked")) {
       $("#search-id-input.hidden").removeClass("hidden");
     } else {
       $("#search-id-input").addClass("hidden");
