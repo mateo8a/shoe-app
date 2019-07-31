@@ -37,6 +37,9 @@ $(document).ready(function() {
       case "search_options_search_by_id":
         toggleIdOptions();
         break;
+      case "search_options_search_by_phone_number":
+        togglePhoneNumberOptions();
+        break;
     }
   });
 
@@ -94,6 +97,14 @@ $(document).ready(function() {
       $("#search-id-input.hidden").removeClass("hidden");
     } else {
       $("#search-id-input").addClass("hidden");
+    };
+  }
+
+  togglePhoneNumberOptions = function () {
+    if ($('#search_options_search_by_phone_number').prop("checked")) {
+      $("#search-phone-number-input.hidden").removeClass("hidden");
+    } else {
+      $("#search-phone-number-input").addClass("hidden");
     };
   }
 

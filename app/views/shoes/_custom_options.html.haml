@@ -7,6 +7,13 @@
       #search-id-input.button-options.hidden
         = f.number_field :id, min: 1
 
+    #search-by-phone-number.search-checkbox-field
+      .field.search-option-checkbox
+        = f.label :search_by_phone_number, "Phone number"
+        = f.check_box :search_by_phone_number
+      #search-phone-number-input.button-options.hidden
+        = f.number_field :phone_number, min: 1000000000, max: 9999999999, class: "phone-input-search-field"
+
     #search-by-date-received.search-date-field
       .field.search-option-checkbox
         = f.label :date_received

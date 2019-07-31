@@ -11,7 +11,7 @@
     = f.text_field :owner
   .field
     = f.label :phone
-    = f.number_field :phone, min: 1000000000, max: 9999999999
+    = f.number_field :phone, min: 1000000000, max: 9999999999, class: "phone-input-field"
   .field
     - custom_product_type_disabled = @shoe.custom_product_type.nil? || @shoe.custom_product_type == "0"
     = f.label :product_type
