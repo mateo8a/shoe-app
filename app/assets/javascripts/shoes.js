@@ -31,6 +31,9 @@ $(document).ready(function() {
       case "search_options_search_by_paid_for":
         togglePaidForOptions();
         break;
+      case "search_options_search_by_delivered":
+        toggleDeliveredOptions();
+        break;
     }
   });
 
@@ -69,6 +72,17 @@ $(document).ready(function() {
       // remove checked from both payment options
       $("#search_options_paid_for_1").prop( "checked", false );
       $("#search_options_paid_for_0").prop( "checked", false );
+    };
+  }
+
+  toggleDeliveredOptions = function() {
+    if ($('#search_options_search_by_delivered').prop("checked")) {
+      $("#search-delivered-input.hidden").removeClass("hidden");
+    } else {
+      $("#search-delivered-input").addClass("hidden");
+      // remove checked from both payment options
+      $("#search_options_delivered_1").prop( "checked", false );
+      $("#search_options_delivered_0").prop( "checked", false );
     };
   }
 

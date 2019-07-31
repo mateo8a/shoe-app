@@ -25,9 +25,9 @@
           %a{:href => new_shoe_path}
             %button.nav-button New shoe
           %a{:href => shoes_path}
-            %button.nav-button All shoes
+            %button.nav-button List shoes
           %a{:href => product_types_path}
-            %button.nav-button All product types
+            %button.nav-button List product types
           - if current_user.try(:admin?)
             %a{:href => organizations_path}
               %button.nav-button Organizations

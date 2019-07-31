@@ -1,6 +1,6 @@
 .search-options
   = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
-    #search-by-date-received
+    #search-by-date-received.search-date-field
       .field.search-option-checkbox
         = f.label :date_received
         = f.check_box :date_received
@@ -12,7 +12,7 @@
           = f.label :date_received_to
           = f.date_select :date_received_to
 
-    #search-by-date-due
+    #search-by-date-due.search-date-field
       .field.search-option-checkbox
         = f.label :date_due
         = f.check_box :date_due
@@ -24,7 +24,7 @@
           = f.label :date_due_to
           = f.date_select :date_due_to
 
-    #search-by-type-of-payment
+    #search-by-type-of-payment.search-checkbox-field
       .field.search-option-checkbox
         = f.label :search_by_type_of_payment, "Type of payment"
         = f.check_box :search_by_type_of_payment
@@ -37,7 +37,7 @@
             = f.radio_button :type_of_payment, "Cash"
             = f.label :type_of_payment, "Cash", value: "Cash"
 
-    #search-by-paid-for
+    #search-by-paid-for.search-checkbox-field
       .field.search-option-checkbox
         = f.label :search_by_paid_for, "Paid for?"
         = f.check_box :search_by_paid_for
@@ -49,5 +49,19 @@
           %li
             = f.radio_button :paid_for, "0"
             = f.label :paid_for, "Not paid for", value: "0"
+
+    #search-by-delivered.search-checkbox-field
+      .field.search-option-checkbox
+        = f.label :search_by_delivered, "Delivered?"
+        = f.check_box :search_by_delivered
+      #search-delivered-input.button-options.hidden
+        %ul#list-of-options
+          %li
+            = f.radio_button :delivered, "1"
+            = f.label :delivered, "All items", value: "1"
+          %li
+            = f.radio_button :delivered, "0"
+            = f.label :delivered, "Only delivered", value: "0"
+
     .actions
       = f.submit "Search"
