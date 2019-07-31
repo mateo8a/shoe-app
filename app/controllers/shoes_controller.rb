@@ -71,7 +71,7 @@ class ShoesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def shoe_params
-    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered)
+    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered, :custom_product_type)
     permitted_params.merge(organization_id: current_user.organization.id)
   end
 end
