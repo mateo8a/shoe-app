@@ -71,4 +71,14 @@ $(document).ready(function() {
       $("#search_options_paid_for_0").prop( "checked", false );
     };
   }
+
+  $("#shoe_custom_product_type").on("click", function() {
+    if ($('#shoe_custom_product_type').prop("checked")) {
+      $(".product-type-input-field").prop( "disabled", false )
+      $("#shoe_product_type").prop( "disabled", true )
+    } else {
+      $(".product-type-input-field").prop( "disabled", true )
+      $("#shoe_product_type").prop( "disabled", false )
+    }
+  })
 });

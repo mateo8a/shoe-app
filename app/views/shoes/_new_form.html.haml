@@ -13,8 +13,12 @@
     = f.label :phone
     = f.number_field :phone, min: 1000000000, max: 9999999999
   .field
+    - custom_product_type_disabled = @shoe.custom_product_type.nil? || @shoe.custom_product_type == "0"
     = f.label :product_type
-    = f.text_field :product_type
+    = f.collection_select(:product_type, current_user.organization.product_types.all, :name, :name, {}, { disabled: !custom_product_type_disabled })
+    = " or enter custom:"
+    = f.check_box :custom_product_type
+    = f.text_field(:product_type, class: "product-type-input-field", disabled: custom_product_type_disabled)
   .field
     = f.label :brand
     = f.text_field :brand
