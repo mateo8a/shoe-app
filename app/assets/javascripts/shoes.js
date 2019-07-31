@@ -34,6 +34,9 @@ $(document).ready(function() {
       case "search_options_search_by_delivered":
         toggleDeliveredOptions();
         break;
+      case "search_options_id":
+        toggleIdOptions();
+        break;
     }
   });
 
@@ -69,7 +72,7 @@ $(document).ready(function() {
       $("#search-paid-for-input.hidden").removeClass("hidden");
     } else {
       $("#search-paid-for-input").addClass("hidden");
-      // remove checked from both payment options
+      // remove checked from both paid for options
       $("#search_options_paid_for_1").prop( "checked", false );
       $("#search_options_paid_for_0").prop( "checked", false );
     };
@@ -80,9 +83,17 @@ $(document).ready(function() {
       $("#search-delivered-input.hidden").removeClass("hidden");
     } else {
       $("#search-delivered-input").addClass("hidden");
-      // remove checked from both payment options
+      // remove checked from both delivered options
       $("#search_options_delivered_1").prop( "checked", false );
       $("#search_options_delivered_0").prop( "checked", false );
+    };
+  }
+
+  toggleIdOptions = function () {
+    if ($('#search_options_id').prop("checked")) {
+      $("#search-id-input.hidden").removeClass("hidden");
+    } else {
+      $("#search-id-input").addClass("hidden");
     };
   }
 
