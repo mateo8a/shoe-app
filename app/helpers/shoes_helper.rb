@@ -78,6 +78,6 @@ module ShoesHelper
   end
 
   def payment_options_disabled?(shoe)
-    Shoe.exists?(shoe.id) && shoe.paid_for?
+    Shoe.exists?(shoe.id) && shoe.paid_for? && !shoe.paid_for_changed?
   end
 end

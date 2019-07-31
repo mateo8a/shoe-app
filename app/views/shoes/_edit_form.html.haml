@@ -1,0 +1,80 @@
+= form_for @shoe, :html => {:class => 'shoe-form'} do |f|
+  - if @shoe.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@shoe.errors.count, "error")} prohibited this shoe from being saved:"
+      %ul
+        - @shoe.errors.full_messages.each do |message|
+          %li= message
+
+  %p
+    %b ID:
+    = @shoe.id_within_organization
+  %p
+    %b Owner:
+    = @shoe.owner
+  %p
+    %b Phone:
+    = number_to_phone(@shoe.phone)
+  %p
+    %b Product type:
+    = @shoe.product_type
+  %p
+    %b Brand:
+    = @shoe.brand
+  %p
+    %b Color:
+    = @shoe.color
+  %p
+    %b Gender:
+    = @shoe.gender
+  %p
+    %b Cost:
+    = "$".html_safe + @shoe.cost.to_s
+  - if !@shoe.paid_for_changed? && @shoe.paid_for
+    %p
+      %b Paid for?:
+      = human_boolean(@shoe.paid_for)
+  - if !@shoe.type_of_payment_changed? && @shoe.type_of_payment
+    %p
+      %b Type of payment:
+      = @shoe.type_of_payment
+  %p
+    %b Date received:
+    = @shoe.date_received
+  %p
+    %b Date due:
+    = @shoe.date_due
+
+  .field
+    = f.label :task_description
+    = f.text_area :task_description, cols: 80, rows: 8
+
+  - if (@shoe.paid_for_changed? && @shoe.paid_for) || (!@shoe.paid_for_changed? && !@shoe.paid_for)
+    .field#paid-for-field
+      = f.label :paid_for, "Paid for?"
+      = "Yes: ".html_safe + paid_for_checkbox(f, @shoe)
+
+  - if (@shoe.type_of_payment_changed? && @shoe.type_of_payment) || (!@shoe.type_of_payment_changed? && !@shoe.type_of_payment)
+    .field#type-of-payment{ class: @shoe.paid_for ? "" : "hidden" }
+      %div Type of payment
+      .button-options
+        %ul#list-of-options
+          %li
+            = payment_options_button(f, @shoe, "Card")
+            = f.label :type_of_payment, "Card", value: "Card"
+          %li
+            = payment_options_button(f, @shoe, "Cash")
+            = f.label :type_of_payment, "Cash", value: "Cash"
+
+  .field
+    = f.label :location
+    = f.text_field :location
+  .field
+    = f.label :finished, "Finished?"
+    = "Yes: ".html_safe + f.check_box(:finished)
+  .field#paid-for-field
+    = f.label :delivered, "Delivered?"
+    = "Yes: ".html_safe + f.check_box(:delivered)
+  .field
+  .actions
+    = f.submit 'Save', :class => "save-button"

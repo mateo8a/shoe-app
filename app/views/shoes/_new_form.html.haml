@@ -11,7 +11,7 @@
     = f.text_field :owner
   .field
     = f.label :phone
-    = f.number_field :phone, min: 1
+    = f.number_field :phone, min: 1000000000, max: 9999999999
   .field
     = f.label :product_type
     = f.text_field :product_type
@@ -56,16 +56,6 @@
   .field
     = f.label :date_due
     = f.date_select :date_due
-  - if Shoe.exists?(@shoe.id)
-    .field
-      = f.label :location
-      = f.text_field :location
-    .field
-      = f.label :finished, "Finished?"
-      = "Yes: ".html_safe + f.check_box(:finished)
-    .field#paid-for-field
-      = f.label :delivered, "Delivered?"
-      = "Yes: ".html_safe + f.check_box(:delivered)
   .field
   .actions
     = f.submit 'Save', :class => "save-button"
