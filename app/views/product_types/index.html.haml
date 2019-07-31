@@ -1,0 +1,17 @@
+%h1 Listing product types
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @product_types.each do |pt|
+      %tr
+        %td= pt.name
+        %td= link_to 'Show', pt
+
+%br
+
+= link_to 'New Product Type', new_product_type_path
