@@ -8,13 +8,13 @@
 
   .field
     = f.label :owner
-    = owner_field(f, @shoe)
+    = f.text_field :owner
   .field
     = f.label :phone
-    = phone_number_field(f, @shoe)
+    = f.number_field :phone, min: 1
   .field
     = f.label :product_type
-    = product_type_field(f, @shoe)
+    = f.text_field :product_type
   .field
     = f.label :brand
     = f.text_field :brand
@@ -56,16 +56,6 @@
   .field
     = f.label :date_due
     = f.date_select :date_due
-  - if Shoe.exists?(@shoe.id)
-    .field
-      = f.label :location
-      = f.text_field :location
-    .field
-      = f.label :finished, "Finished?"
-      = "Yes: ".html_safe + f.check_box(:finished)
-    .field#paid-for-field
-      = f.label :delivered, "Delivered?"
-      = "Yes: ".html_safe + f.check_box(:delivered)
   .field
   .actions
     = f.submit 'Save', :class => "save-button"

@@ -1,0 +1,25 @@
+.field
+  = f.label :owner
+  = f.text_field :owner
+.field
+  = f.label :phone
+  = f.number_field :phone, min: 1
+.field
+  = f.label :product_type
+  = f.text_field :product_type
+.field
+  = f.label :brand
+  = f.text_field :brand
+.field
+  = f.label :color
+  = f.text_field :color
+.field
+  %div Gender
+  .button-options
+    %ul#list-of-options
+      %li
+        = f.radio_button :gender, "Male"
+        = f.label :gender, "Male", value: "Male"
+      %li
+        = f.radio_button :gender, "Female"
+        = f.label :gender, "Female", value: "Female"

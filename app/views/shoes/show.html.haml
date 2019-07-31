@@ -24,7 +24,7 @@
   = @shoe.task_description
 %p
   %b Cost:
-  = @shoe.cost
+  = "$".html_safe + @shoe.cost.to_s
 %p
   %b Paid for?:
   = human_boolean(@shoe.paid_for)

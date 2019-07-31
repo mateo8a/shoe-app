@@ -1,33 +1,4 @@
 module ShoesHelper
-  def owner_field(f, shoe)
-    if owner_exists?(shoe)
-      f.text_field :owner, disabled: "disabled"
-    else
-      f.text_field :owner
-    end
-  end
-
-  def phone_number_field(f, shoe)
-    if phone_number_exists?(shoe)
-      f.number_field :phone, min: 1, disabled: "disabled"
-    else
-      f.number_field :phone, min: 1
-    end
-  end
-
-  def product_type_field(f, shoe)
-    if product_type_exists?(shoe)
-      f.text_field :product_type, disabled: "disabled"
-    else
-      f.text_field :product_type
-    end
-  end
-
-  def attribute_field(f, shoe, attribute)
-    if Shoe.exists?(shoe.id) && shoe.send(:attribute)
-    end
-  end
-
   def paid_for_checkbox(f, shoe)
     if payment_options_disabled?(shoe)
       f.check_box :paid_for, disabled: "disabled"
@@ -62,18 +33,6 @@ module ShoesHelper
   end
 
   private
-  def owner_exists?(shoe)
-    Shoe.exists?(shoe.id) && shoe.owner
-  end
-
-  def phone_number_exists?(shoe)
-    Shoe.exists?(shoe.id) && shoe.phone
-  end
-
-  def product_type_exists?(shoe)
-    Shoe.exists?(shoe.id) && shoe.product_type
-  end
-
   def date_received_search(search_params, shoes)
     if param_to_boolean(search_params[:date_received])
       date_received_from = extract_date_from_params(search_params, "date_received_from")
@@ -119,6 +78,6 @@ module ShoesHelper
   end
 
   def payment_options_disabled?(shoe)
-    Shoe.exists?(shoe.id) && shoe.paid_for?
+    Shoe.exists?(shoe.id) && shoe.paid_for? && !shoe.paid_for_changed?
   end
 end
