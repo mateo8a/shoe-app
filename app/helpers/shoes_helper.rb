@@ -32,6 +32,7 @@ module ShoesHelper
     shoes = delivered_search(search_params, shoes)
     shoes = id_search(search_params, shoes)
     shoes = phone_search(search_params, shoes)
+    shoes = name_search(search_params, shoes)
     shoes
   end
 
@@ -93,6 +94,15 @@ module ShoesHelper
     if !search_params[:phone_number].blank?
       phone = search_params[:phone_number].to_i
       shoes = shoes.where(phone: phone)
+    end
+    shoes
+  end
+
+  def name_search(search_params, shoes)
+    if !search_params[:name].blank?
+      search_name = search_params[:name]
+      shoes_table = Shoe.arel_table
+      shoes = shoes.where(shoes_table[:owner].matches("%#{search_name}%"))
     end
     shoes
   end

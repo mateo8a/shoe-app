@@ -1,7 +1,7 @@
 .search-options
   = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
     #search-parameters
-      #search-by-id.search-text-field
+      #search-by-id.search-id-field
         .field
           = f.label :search_by_id, "ID"
           = f.number_field :id, min: 1
@@ -10,6 +10,11 @@
         .field
           = f.label :search_by_phone_number, "Phone number"
           = f.number_field :phone_number, min: 1000000000, max: 9999999999, class: "phone-input-search-field"
+
+      #search-by-name.search-checkbox-field
+        .field
+          = f.label :search_by_name, "Name"
+          = f.text_field :name, size: 18
 
       #search-by-date-received.search-date-field
         .field.search-option-checkbox
