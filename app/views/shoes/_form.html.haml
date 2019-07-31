@@ -8,13 +8,13 @@
 
   .field
     = f.label :owner
-    = f.text_field :owner
+    = owner_field(f, @shoe)
   .field
     = f.label :phone
-    = f.number_field :phone, min: 1
+    = phone_number_field(f, @shoe)
   .field
     = f.label :product_type
-    = f.text_field :product_type
+    = product_type_field(f, @shoe)
   .field
     = f.label :brand
     = f.text_field :brand
