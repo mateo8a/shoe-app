@@ -123,9 +123,11 @@
 
 .search-options {
   display: block;
-  height: 200px;
+  min-height: 200px;
   width: 100%;
   position: relative;
+  overflow: auto;
+  padding-bottom: 10px;
 }
 
 .search-date-field {
@@ -151,13 +153,16 @@
 }
 
 .search-options .actions {
+  padding-top: 15px;
+  float: left;
   clear: both;
-  padding-top: 10px;
-  bottom: 0;
-  position: absolute;
-  margin-bottom: 25px;
+
 }
 
 .search-form {
   height: 100%;
+}
+
+#search-parameters {
+  float: left;
 }

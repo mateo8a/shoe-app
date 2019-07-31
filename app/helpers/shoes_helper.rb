@@ -59,14 +59,14 @@ module ShoesHelper
   end
 
   def type_of_payment_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_type_of_payment]) && search_params[:type_of_payment]
+    if search_params[:type_of_payment]
       shoes = shoes.where(type_of_payment: search_params[:type_of_payment])
     end
     shoes
   end
 
   def paid_for_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_paid_for]) && search_params[:paid_for]
+    if search_params[:paid_for]
       paid_for = param_to_boolean(search_params[:paid_for])
       shoes = shoes.where(paid_for: paid_for)
     end
@@ -74,7 +74,7 @@ module ShoesHelper
   end
 
   def delivered_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_delivered]) && search_params[:delivered]
+    if search_params[:delivered]
       delivered = param_to_boolean(search_params[:delivered])
       shoes = shoes.where(delivered: delivered).order(created_at: :desc)
     end
@@ -82,7 +82,7 @@ module ShoesHelper
   end
 
   def id_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_id]) && search_params[:id]
+    if !search_params[:id].blank?
       id_within_organization = search_params[:id].to_i
       shoes = shoes.where(id_within_organization: id_within_organization)
     end
@@ -90,7 +90,7 @@ module ShoesHelper
   end
 
   def phone_search(search_params, shoes)
-    if param_to_boolean(search_params[:search_by_phone_number]) && search_params[:phone_number]
+    if !search_params[:phone_number].blank?
       phone = search_params[:phone_number].to_i
       shoes = shoes.where(phone: phone)
     end
