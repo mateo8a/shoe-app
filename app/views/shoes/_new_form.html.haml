@@ -11,7 +11,7 @@
     = f.text_field :owner
   .field
     = f.label :phone
-    = f.number_field :phone, min: 1
+    = f.number_field :phone, min: 1000000000, max: 9999999999
   .field
     = f.label :product_type
     = f.text_field :product_type
