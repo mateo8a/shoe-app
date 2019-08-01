@@ -12,6 +12,7 @@ class Shoe < ApplicationRecord
   validates :paid_for, presence: { message: "- Si el tipo de pago esta especificado, se debe marcar el item como pagado." }, if: -> { type_of_payment }
   validates :location, presence: true, if: -> { finished }
   validates :finished, presence: true, if: -> { delivered }
+  validates :delivered_date, presence: true, if: -> { delivered }
   validate :date_due_greater_than_date_received
 
   belongs_to :organization
@@ -21,8 +22,8 @@ class Shoe < ApplicationRecord
   attr_accessor :custom_product_type
 
   def self.to_csv
-    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered}
-    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Location Finished? Delivered?}
+    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered delivered_date}
+    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Location Finished? Delivered? Delivered\ date}
 
     CSV.generate(headers: true) do |csv|
       csv << header
