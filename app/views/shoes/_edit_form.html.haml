@@ -52,11 +52,13 @@
   #updated-date-due
     .field.search-option-checkbox
       = f.label :update_date_due, "Update date due?"
-      = f.check_box :update_date_due
-    #updated-date-due-input.hidden
+      - udd_checkbox_options = (!@shoe.updated_date_due_was.nil?) ? { disabled: true, checked: true } : {}
+      = f.check_box :update_date_due, udd_checkbox_options
+    #updated-date-due-input{ class: (@shoe.update_date_due || @shoe.updated_date_due.present?) ? "" : "hidden" }
       .field
+        - udd_disabled = !@shoe.update_date_due && !@shoe.updated_date_due.present?
         = f.label :updated_date_due
-        = f.date_select :updated_date_due, disabled: "disabled"
+        = f.date_select :updated_date_due, disabled: udd_disabled
 
   - if (@shoe.paid_for_changed? && @shoe.paid_for) || (!@shoe.paid_for_changed? && !@shoe.paid_for)
     .field#paid-for-field
