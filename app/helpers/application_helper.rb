@@ -1,5 +1,5 @@
 module ApplicationHelper
-  DEAFULT_HEADER_TITLE = "Shoe organization app"
+  DEAFULT_HEADER_TITLE = "Item organization app"
 
   def header_title
     if current_user.try(:organization)
