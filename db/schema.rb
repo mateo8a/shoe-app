@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_031520) do
     t.bigint "organization_id"
     t.integer "id_within_organization", null: false
     t.datetime "delivered_date"
-    t.datetime "updated_date_due"
+    t.date "updated_date_due"
     t.index ["organization_id"], name: "index_shoes_on_organization_id"
   end
 
