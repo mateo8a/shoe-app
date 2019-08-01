@@ -15,16 +15,18 @@ class Shoe < ApplicationRecord
   validates :delivered_date, presence: true, if: -> { delivered }
   validates :paid_for, presence: true, if: -> { delivered }
   validate :date_due_greater_than_date_received
+  validate :admin_password_entered_if_voided
+  before_validation :setup_delivered_datetime
 
   belongs_to :organization
 
   acts_as_sequenced scope: :organization_id, column: :id_within_organization, start_at: 1000
 
-  attr_accessor :custom_product_type, :update_date_due
+  attr_accessor :custom_product_type, :update_date_due, :admin_password
 
   def self.to_csv
-    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due location finished delivered delivered_date}
-    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Location Finished? Delivered? Delivered\ date}
+    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due updated_date_due location finished delivered delivered_date void}
+    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Updated\ due\ date Location Finished? Delivered? Delivered\ date Void}
 
     CSV.generate(headers: true) do |csv|
       csv << header
@@ -48,8 +50,25 @@ class Shoe < ApplicationRecord
     end
   end
 
+  def admin_password_entered_if_voided
+    if void != void_was
+      authorized = User.where(organization: organization, role: "superuser").any? do |u|
+        u.valid_password?(admin_password)
+      end
+      errors.add(:void, "must be authorized by an administrator") if !authorized
+    end
+  end
+
+  def setup_delivered_datetime
+    if !delivered_was && delivered
+      self[:delivered_date] = Time.current
+    elsif delivered_was && !delivered
+      self[:delivered_date] = nil
+    end
+  end
+
   def self.boolean_attributes
-    %w{paid_for finished delivered}
+    %w{paid_for finished delivered void}
   end
 
   def self.human_boolean(boolean)

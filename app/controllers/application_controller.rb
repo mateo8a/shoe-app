@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
   def require_admin
     raise StandardError.new("Not an admin") unless current_user.admin?
   end
+
+  def require_superuser
+    raise StandardError.new("Not a superuser") unless current_user.superuser?
+  end
 end

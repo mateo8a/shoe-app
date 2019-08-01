@@ -17,5 +17,8 @@
   .field
     = f.label :organization
     = organizations_dropdown_menu(f)
+  .field
+    = f.label :role
+    = f.select(:role, options_for_select([ "user", "superuser" ]))
   .actions
     = f.submit 'Save', :class => "save-button"
