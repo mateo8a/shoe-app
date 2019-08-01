@@ -17,16 +17,17 @@ class Shoe < ApplicationRecord
   validate :date_due_greater_than_date_received
   validate :admin_password_entered_if_voided
   before_validation :setup_delivered_datetime
+  before_validation :set_up_updated_date_due
 
   belongs_to :organization
 
   acts_as_sequenced scope: :organization_id, column: :id_within_organization, start_at: 1000
 
-  attr_accessor :custom_product_type, :update_date_due, :admin_password
+  attr_accessor :custom_product_type, :admin_password
 
   def self.to_csv
-    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due updated_date_due location finished delivered delivered_date void}
-    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Updated\ due\ date Location Finished? Delivered? Delivered\ date Void}
+    attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due update_date_due updated_date_due location finished delivered delivered_date void}
+    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Update\ date\ due Updated\ date\ due Location Finished? Delivered? Delivered\ date Void}
 
     CSV.generate(headers: true) do |csv|
       csv << header
@@ -67,8 +68,14 @@ class Shoe < ApplicationRecord
     end
   end
 
+  def set_up_updated_date_due
+    if !updated_date_due_was
+      self[:updated_date_due] = date_due
+    end
+  end
+
   def self.boolean_attributes
-    %w{paid_for finished delivered void}
+    %w{paid_for finished delivered update_due_date void}
   end
 
   def self.human_boolean(boolean)

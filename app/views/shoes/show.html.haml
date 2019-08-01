@@ -35,7 +35,7 @@
   %b Date received:
   = @shoe.date_received
 %p
-  %b Date due:
+  %b Original date due:
   = @shoe.date_due
 %p
   %b Location:
@@ -51,9 +51,9 @@
   = @shoe&.delivered_date&.strftime('%Y-%m-%d %H:%M:%S')
 %p
   %b Update due date?:
-  = human_boolean(@shoe.updated_date_due.present?)
+  = human_boolean(@shoe.update_date_due)
 %p
-  %b Updated date due:
+  %b Date due:
   = @shoe&.updated_date_due
 %p
   %b Void?:

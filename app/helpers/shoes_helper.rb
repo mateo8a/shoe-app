@@ -59,7 +59,7 @@ module ShoesHelper
     if param_to_boolean(search_params[:date_due])
       date_due_from = extract_date_from_params(search_params, "date_due_from")
       date_due_to = extract_date_from_params(search_params, "date_due_to")
-      @shoes_search = @shoes_search.where(date_due: date_due_from..date_due_to)
+      @shoes_search = @shoes_search.where(updated_date_due: date_due_from..date_due_to)
     end
     @shoes_search
   end
