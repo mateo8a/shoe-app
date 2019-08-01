@@ -46,6 +46,9 @@
 %p
   %b Delivered?:
   = human_boolean(@shoe.delivered)
+%p
+  %b Delivered date:
+  = @shoe.delivered_date.strftime('%Y-%m-%d %H:%M:%S') if @shoe.delivered_date
 
 = link_to 'Edit', edit_shoe_path(@shoe)
 \|
