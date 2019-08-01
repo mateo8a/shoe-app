@@ -9,10 +9,11 @@ class Shoe < ApplicationRecord
   validates :task_description, presence: true
   validates :cost, presence: true
   validates :type_of_payment, presence: true, if: -> { paid_for }
-  validates :paid_for, presence: { message: "- Si el tipo de pago esta especificado, se debe marcar el item como pagado." }, if: -> { type_of_payment }
+  validates :paid_for, presence: true, if: -> { type_of_payment }
   validates :location, presence: true, if: -> { finished }
   validates :finished, presence: true, if: -> { delivered }
   validates :delivered_date, presence: true, if: -> { delivered }
+  validates :paid_for, presence: true, if: -> { delivered }
   validate :date_due_greater_than_date_received
 
   belongs_to :organization
