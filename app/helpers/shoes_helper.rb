@@ -37,9 +37,9 @@ module ShoesHelper
   end
 
   def setup_delivered_date(shoe, permitted_params)
-    if (!@shoe.delivered && params.require(:shoe).require(:delivered) == "1")
+    if (!shoe.delivered && params.require(:shoe).require(:delivered) == "1")
       permitted_params.merge!(delivered_date: Time.current)
-    elsif (@shoe.delivered && params.require(:shoe).require(:delivered) == "0")
+    elsif (shoe.delivered && params.require(:shoe).require(:delivered) == "0")
       permitted_params.merge!(delivered_date: nil)
     end
     permitted_params
