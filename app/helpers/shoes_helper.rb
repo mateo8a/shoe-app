@@ -37,15 +37,6 @@ module ShoesHelper
     @shoes_search
   end
 
-  def setup_delivered_date(shoe, permitted_params)
-    if (!shoe.delivered && params.require(:shoe).require(:delivered) == "1")
-      permitted_params.merge!(delivered_date: Time.current)
-    elsif (shoe.delivered && params.require(:shoe).require(:delivered) == "0")
-      permitted_params.merge!(delivered_date: nil)
-    end
-    permitted_params
-  end
-
   private
   def setup_shoes_search
     @shoes_search = Shoe.where(organization_id: current_user.organization.id).order(created_at: :desc)

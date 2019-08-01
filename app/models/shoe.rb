@@ -16,6 +16,7 @@ class Shoe < ApplicationRecord
   validates :paid_for, presence: true, if: -> { delivered }
   validate :date_due_greater_than_date_received
   validate :admin_password_entered_if_voided
+  before_validation :setup_delivered_datetime
 
   belongs_to :organization
 
@@ -55,6 +56,14 @@ class Shoe < ApplicationRecord
         u.valid_password?(admin_password)
       end
       errors.add(:void, "must be authorized by an administrator") if !authorized
+    end
+  end
+
+  def setup_delivered_datetime
+    if !delivered_was && delivered
+      self[:delivered_date] = Time.current
+    elsif delivered_was && !delivered
+      self[:delivered_date] = nil
     end
   end
 
