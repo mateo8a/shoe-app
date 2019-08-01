@@ -1,6 +1,7 @@
 class ProductTypesController < ApplicationController
   before_action :set_product_type, only: [:show]
   before_action :check_if_user_has_organization
+  before_action :require_superuser
 
   def index
     @product_types = current_user.organization.product_types

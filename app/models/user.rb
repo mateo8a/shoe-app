@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def admin?
     ADMIN_EMAILS.include?(email)
   end
+
+  def superuser?
+    role == "superuser" || admin?
+  end
 end
