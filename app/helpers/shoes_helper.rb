@@ -33,6 +33,7 @@ module ShoesHelper
     id_search(search_params)
     phone_search(search_params)
     name_search(search_params)
+    void_search(search_params)
     @shoes_search
   end
 
@@ -116,6 +117,14 @@ module ShoesHelper
       search_name = search_params[:name]
       shoes_table = Shoe.arel_table
       @shoes_search = @shoes_search.where(shoes_table[:owner].matches("%#{search_name}%"))
+    end
+    @shoes_search
+  end
+
+  def void_search(search_params)
+    if search_params[:void]
+      void = param_to_boolean(search_params[:void])
+      @shoes_search = @shoes_search.where(void: void)
     end
     @shoes_search
   end

@@ -55,6 +55,9 @@
 %p
   %b Updated date due:
   = @shoe&.updated_date_due
+%p
+  %b Void?:
+  = human_boolean(@shoe.void)
 
 = link_to 'Edit', edit_shoe_path(@shoe)
 \|

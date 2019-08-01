@@ -5,14 +5,14 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = Shoe.where(organization_id: current_user.organization.id, delivered: false).order(created_at: :desc)
+    @shoes = Shoe.where(organization_id: current_user.organization.id, delivered: false, void: false).order(created_at: :desc)
     respond_to do |format|
       format.html
       format.js do
         @shoes = helpers.search_results
       end
       format.csv do
-        @shoes = helpers.search_results(@shoes) if params[:search_options]
+        @shoes = helpers.search_results if params[:search_options]
         send_data(@shoes.to_csv, filename: "items-#{Time.now.strftime('%Y-%m-%d_%H-%M-%S')}.csv")
       end
     end
@@ -71,7 +71,7 @@ class ShoesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def shoe_params
-    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered, :custom_product_type, :update_date_due, :updated_date_due)
+    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered, :custom_product_type, :update_date_due, :updated_date_due, :void)
     permitted_params = helpers.setup_delivered_date(@shoe, permitted_params) if action_name == "update"
     permitted_params.merge!(organization_id: current_user.organization.id)
   end

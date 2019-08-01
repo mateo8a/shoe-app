@@ -75,6 +75,17 @@
             %li
               = f.radio_button :delivered, "0"
               = f.label :delivered, "Undelivered", value: "0"
+      #search-by-void.search-checkbox-field
+        .field
+          = f.label :search_by_void, "Void?"
+        .button-options
+          %ul#list-of-options
+            %li
+              = f.radio_button :void, "1"
+              = f.label :void, "Void", value: "1"
+            %li
+              = f.radio_button :void, "0"
+              = f.label :void, "Not void", value: "0"
 
     .actions
       = f.submit "Search"

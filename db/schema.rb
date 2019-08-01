@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_044512) do
+ActiveRecord::Schema.define(version: 2019_08_01_053305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_044512) do
     t.integer "id_within_organization", null: false
     t.datetime "delivered_date"
     t.date "updated_date_due"
+    t.boolean "void", default: false
     t.index ["organization_id"], name: "index_shoes_on_organization_id"
   end
 
