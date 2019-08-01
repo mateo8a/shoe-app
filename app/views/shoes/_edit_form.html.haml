@@ -49,6 +49,15 @@
     = f.label :task_description
     = f.text_area :task_description, cols: 80, rows: 8
 
+  #updated-date-due
+    .field.search-option-checkbox
+      = f.label :update_date_due, "Update date due?"
+      = f.check_box :update_date_due
+    #updated-date-due-input.hidden
+      .field
+        = f.label :updated_date_due
+        = f.date_select :updated_date_due, disabled: "disabled"
+
   - if (@shoe.paid_for_changed? && @shoe.paid_for) || (!@shoe.paid_for_changed? && !@shoe.paid_for)
     .field#paid-for-field
       = f.label :paid_for, "Paid for?"

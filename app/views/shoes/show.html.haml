@@ -49,6 +49,9 @@
 %p
   %b Delivered date:
   = @shoe&.delivered_date&.strftime('%Y-%m-%d %H:%M:%S')
+%p
+  %b Updated date due:
+  = @shoe&.updated_date_due&.strftime('%Y-%m-%d')
 
 = link_to 'Edit', edit_shoe_path(@shoe)
 \|

@@ -53,4 +53,18 @@ $(document).ready(function() {
       $("#shoe_product_type").prop( "disabled", false )
     }
   })
+
+  $("#shoe_update_date_due").on("click", function() {
+    if ($('#shoe_update_date_due').prop("checked")) {
+      $("#updated-date-due-input").removeClass("hidden");
+      $("#shoe_updated_date_due_1i").prop( "disabled", false )
+      $("#shoe_updated_date_due_2i").prop( "disabled", false )
+      $("#shoe_updated_date_due_3i").prop( "disabled", false )
+    } else {
+      $("#updated-date-due-input").addClass("hidden");
+      $("#shoe_updated_date_due_1i").prop( "disabled", true )
+      $("#shoe_updated_date_due_2i").prop( "disabled", true )
+      $("#shoe_updated_date_due_3i").prop( "disabled", true )
+    }
+  })
 });
