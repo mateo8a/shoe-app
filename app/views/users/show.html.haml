@@ -9,7 +9,10 @@
   = @user.email
 %p
   %b Organization:
-  = @user.organization.name
+  = @user.organization.try(:name)
+%p
+  %b Role:
+  = @user.role
 
 = link_to 'Edit', edit_user_path(@user)
 \|

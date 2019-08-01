@@ -8,11 +8,7 @@ class User < ApplicationRecord
 
   ADMIN_EMAILS = ["mateo.ochoac@gmail.com"]
 
-  def role
-    ADMIN_EMAILS.include?(email) ? "admin" : "user"
-  end
-
   def admin?
-    role == "admin"
+    ADMIN_EMAILS.include?(email)
   end
 end
