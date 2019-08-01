@@ -48,7 +48,13 @@
   = human_boolean(@shoe.delivered)
 %p
   %b Delivered date:
-  = @shoe.delivered_date.strftime('%Y-%m-%d %H:%M:%S') if @shoe.delivered_date
+  = @shoe&.delivered_date&.strftime('%Y-%m-%d %H:%M:%S')
+%p
+  %b Update due date?:
+  = human_boolean(@shoe.updated_date_due.present?)
+%p
+  %b Updated date due:
+  = @shoe&.updated_date_due
 
 = link_to 'Edit', edit_shoe_path(@shoe)
 \|

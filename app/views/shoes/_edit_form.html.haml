@@ -44,10 +44,25 @@
   %p
     %b Date due:
     = @shoe.date_due
+  - if @shoe.updated_date_due_was
+    %p
+      %b Update due date?:
+      Yes
 
   .field
     = f.label :task_description
     = f.text_area :task_description, cols: 80, rows: 8
+
+  #updated-date-due
+    - if @shoe.updated_date_due.nil? || @shoe.updated_date_due_was.nil?
+      .field.search-option-checkbox
+        = f.label :update_date_due, "Update date due?"
+        = f.check_box :update_date_due
+    #updated-date-due-input{ class: (@shoe.update_date_due || @shoe.updated_date_due.present?) ? "" : "hidden" }
+      .field
+        - udd_disabled = !@shoe.update_date_due && !@shoe.updated_date_due.present?
+        = f.label :updated_date_due
+        = f.date_select :updated_date_due, disabled: udd_disabled
 
   - if (@shoe.paid_for_changed? && @shoe.paid_for) || (!@shoe.paid_for_changed? && !@shoe.paid_for)
     .field#paid-for-field
