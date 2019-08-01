@@ -62,6 +62,12 @@ class ShoesController < ApplicationController
     end
   end
 
+  def superuser_authorized?
+    User.where(organization: current_user.organization, role: "superuser").any? do |u|
+      u.valid_password?(password_param)
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_shoe
@@ -71,7 +77,7 @@ class ShoesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def shoe_params
-    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered, :custom_product_type, :update_date_due, :updated_date_due, :void)
+    permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered, :custom_product_type, :update_date_due, :updated_date_due, :void, :admin_password)
     permitted_params = helpers.setup_delivered_date(@shoe, permitted_params) if action_name == "update"
     permitted_params.merge!(organization_id: current_user.organization.id)
   end

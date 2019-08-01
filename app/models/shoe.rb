@@ -15,12 +15,13 @@ class Shoe < ApplicationRecord
   validates :delivered_date, presence: true, if: -> { delivered }
   validates :paid_for, presence: true, if: -> { delivered }
   validate :date_due_greater_than_date_received
+  validate :admin_password_entered_if_voided
 
   belongs_to :organization
 
   acts_as_sequenced scope: :organization_id, column: :id_within_organization, start_at: 1000
 
-  attr_accessor :custom_product_type, :update_date_due
+  attr_accessor :custom_product_type, :update_date_due, :admin_password
 
   def self.to_csv
     attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due updated_date_due location finished delivered delivered_date void}
@@ -45,6 +46,15 @@ class Shoe < ApplicationRecord
   def date_due_greater_than_date_received
     if date_due < date_received
       errors.add(:date_due, "can't be before date received")
+    end
+  end
+
+  def admin_password_entered_if_voided
+    if void != void_was
+      authorized = User.where(organization: organization, role: "superuser").any? do |u|
+        u.valid_password?(admin_password)
+      end
+      errors.add(:void, "must be authorized by an administrator") if !authorized
     end
   end
 

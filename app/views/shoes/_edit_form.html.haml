@@ -93,6 +93,8 @@
   .field
     = f.label :void, "Void?"
     = "Yes: ".html_safe + f.check_box(:void)
+    %span
+      = "Enter administrator password: ".html_safe + f.password_field(:admin_password)
   .field
   .actions
     = f.submit 'Save', :class => "save-button"
