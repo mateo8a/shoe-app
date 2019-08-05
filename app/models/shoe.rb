@@ -27,7 +27,7 @@ class Shoe < ApplicationRecord
 
   def self.to_csv
     attributes = %w{id_within_organization owner phone product_type brand color gender task_description cost paid_for type_of_payment date_received date_due update_date_due updated_date_due location finished delivered delivered_date void}
-    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Date\ due Update\ date\ due Updated\ date\ due Location Finished? Delivered? Delivered\ date Void}
+    header = %w{ID Owner Phone Product\ type Brand Color Gender Task\ description Cost Paid\ for? Type\ of\ payment Date\ received Original\ date\ due Update\ date\ due Date\ due Location Finished? Delivered? Delivered\ date Void}
 
     CSV.generate(headers: true) do |csv|
       csv << header
@@ -75,7 +75,7 @@ class Shoe < ApplicationRecord
   end
 
   def self.boolean_attributes
-    %w{paid_for finished delivered update_due_date void}
+    %w{paid_for finished delivered update_date_due void}
   end
 
   def self.human_boolean(boolean)

@@ -5,12 +5,16 @@
     %tr
       %th Name
       %th
+      %th
+      %th
 
   %tbody
     - @product_types.each do |pt|
       %tr
         %td= pt.name
         %td= link_to 'Show', pt
+        %td= link_to 'Edit', edit_product_type_path(pt)
+        %td= link_to 'Destroy', pt, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

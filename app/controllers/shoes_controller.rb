@@ -1,5 +1,5 @@
 class ShoesController < ApplicationController
-  before_action :set_shoe, only: [:show, :edit, :update, :destroy]
+  before_action :set_shoe, only: [:show, :edit, :update]
   before_action :check_if_user_has_organization
 
   # GET /shoes

@@ -1,5 +1,5 @@
 class ProductTypesController < ApplicationController
-  before_action :set_product_type, only: [:show]
+  before_action :set_product_type, only: [:show, :edit, :update, :destroy]
   before_action :check_if_user_has_organization
   before_action :require_superuser
 
@@ -14,6 +14,9 @@ class ProductTypesController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def create
     @product_type = ProductType.new(product_type_params)
 
@@ -25,6 +28,26 @@ class ProductTypesController < ApplicationController
         format.html { render :new }
         format.json { render json: @product_type.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @product_type.update(product_type_params)
+        format.html { redirect_to @product_type, notice: 'Product type was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product_type }
+      else
+        format.html { render :edit }
+        format.json { render json: @product_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @product_type.destroy
+    respond_to do |format|
+      format.html { redirect_to product_types_url, notice: 'Product type was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
