@@ -1,6 +1,7 @@
 class ShoesController < ApplicationController
   before_action :set_shoe, only: [:show, :edit, :update]
   before_action :check_if_user_has_organization
+  before_action :cannot_edit_if_delivered, only: [:edit, :update]
 
   # GET /shoes
   # GET /shoes.json
@@ -79,5 +80,9 @@ class ShoesController < ApplicationController
   def shoe_params
     permitted_params = params.require(:shoe).permit(:color, :date_received, :date_due, :owner, :phone, :type_of_payment, :cost, :product_type, :brand, :gender, :task_description, :paid_for, :location, :finished, :delivered, :custom_product_type, :update_date_due, :updated_date_due, :void, :admin_password)
     permitted_params.merge!(organization_id: current_user.organization.id)
+  end
+
+  def cannot_edit_if_delivered
+    raise StandardError.new("cannot edit shoe if it was delivered")
   end
 end
