@@ -2,6 +2,7 @@ class ProductTypesController < ApplicationController
   before_action :set_product_type, only: [:show, :edit, :update, :destroy]
   before_action :check_if_user_has_organization
   before_action :require_superuser
+  before_action :check_if_product_type_has_items, only: [:edit, :update, :destroy]
 
   def index
     @product_types = current_user.organization.product_types
@@ -61,5 +62,12 @@ class ProductTypesController < ApplicationController
   def product_type_params
     permitted_params = params.require(:product_type).permit(:name, :organization_id)
     permitted_params.merge(organization_id: current_user.organization.id)
+  end
+
+  def check_if_product_type_has_items
+    disabled_action = current_user.organization.shoes.any? do |s|
+      s.product_type == @product_type.name
+    end
+    raise StandardError.new("cannot complete request because records exist with this product type") if disabled_action
   end
 end
