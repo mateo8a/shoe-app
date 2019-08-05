@@ -36,4 +36,4 @@
         %td= human_boolean(shoe.finished)
         %td= human_boolean(shoe.delivered)
         %td= link_to 'Show', shoe
-        %td= link_to 'Edit', edit_shoe_path(shoe)
+        %td= shoe.delivered? ? "" : link_to('Edit', edit_shoe_path(shoe))

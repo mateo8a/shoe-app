@@ -1,0 +1,20 @@
+%h1 Editing item
+
+= form_for @product_type, :html => { autocomplete: "off" } do |f|
+  - if @product_type.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product_type.errors.count, "error")} prohibited this product type from being saved:"
+      %ul
+        - @product_type.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'
+
+
+= link_to 'Show', @product_type
+\|
+= link_to 'Back', product_types_path
