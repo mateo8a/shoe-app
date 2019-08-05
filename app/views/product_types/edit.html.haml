@@ -1,6 +1,6 @@
 %h1 Editing item
 
-= form_for @product_type do |f|
+= form_for @product_type, :html => { autocomplete: "off" } do |f|
   - if @product_type.errors.any?
     #error_explanation
       %h2= "#{pluralize(@product_type.errors.count, "error")} prohibited this product type from being saved:"
