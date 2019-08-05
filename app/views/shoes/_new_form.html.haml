@@ -7,15 +7,15 @@
           %li= message
 
   .field
-    = f.label :owner
+    = f.label :owner, "Owner*"
     = f.text_field :owner
   .field
-    = f.label :phone
+    = f.label :phone, "Phone*"
     = f.number_field :phone, min: 1000000000, max: 9999999999, class: "phone-input-field"
   .field
     - custom_product_type_disabled = @shoe.custom_product_type.nil? || @shoe.custom_product_type == "0"
-    = f.label :product_type
-    = f.collection_select(:product_type, current_user.organization.product_types.all, :name, :name, {}, { disabled: !custom_product_type_disabled })
+    = f.label :product_type, "Product type*"
+    = f.collection_select(:product_type, current_user.organization.product_types.all, :name, :name, {:prompt => "Choose product type..."}, { disabled: !custom_product_type_disabled })
     = " or enter custom:"
     = f.check_box :custom_product_type
     = f.text_field(:product_type, class: "product-type-input-field", disabled: custom_product_type_disabled)
@@ -23,10 +23,10 @@
     = f.label :brand
     = f.text_field :brand
   .field
-    = f.label :color
+    = f.label :color, "Color*"
     = f.text_field :color
   .field
-    %div Gender
+    %div Gender*
     .button-options
       %ul#list-of-options
         %li
@@ -36,16 +36,16 @@
           = f.radio_button :gender, "Female"
           = f.label :gender, "Female", value: "Female"
   .field
-    = f.label :task_description
+    = f.label :task_description, "Task description*"
     = f.text_area :task_description, cols: 80, rows: 8
   .field
-    = f.label :cost
+    = f.label :cost, "Cost*"
     = "$ ".html_safe + cost_input_field(f, @shoe)
   .field#paid-for-field
-    = f.label :paid_for, "Paid for?"
+    = f.label :paid_for, "Paid for?*"
     = "Yes: ".html_safe + paid_for_checkbox(f, @shoe)
   .field#type-of-payment{ class: @shoe.paid_for ? "" : "hidden" }
-    %div Type of payment
+    %div Type of payment*
     .button-options
       %ul#list-of-options
         %li
@@ -55,11 +55,12 @@
           = payment_options_button(f, @shoe, "Cash")
           = f.label :type_of_payment, "Cash", value: "Cash"
   .field
-    = f.label :date_received
+    = f.label :date_received, "Date received*"
     = f.date_select :date_received
   .field
-    = f.label :date_due
+    = f.label :date_due, "Date due*"
     = f.date_select :date_due
   .field
+    %span#required-fields-notice *Fields marked with an asterisk are required
   .actions
     = f.submit 'Save', :class => "save-button"
