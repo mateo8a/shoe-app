@@ -32,6 +32,7 @@
           - if current_user.try(:admin?)
             %a{:href => organizations_path}
               %button.nav-button Organizations
+          - if current_user.try(:superuser?)
             %a{:href => users_path}
               %button.nav-button Users
     %p.notice= notice
