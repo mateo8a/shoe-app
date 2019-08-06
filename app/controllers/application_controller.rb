@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_user_has_organization
     if current_user
-      render "users/organization_required" unless current_user.organization
+      render "users/organization_required" unless current_user.organization || current_user.admin?
     end
   end
 
