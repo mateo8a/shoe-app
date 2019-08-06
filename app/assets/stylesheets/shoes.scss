@@ -1,0 +1,172 @@
+// Place all the styles related to the Shoes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* New shoe form */
+
+.button-options {
+  overflow: overlay;
+}
+
+#list-of-options {
+  list-style-type:none;
+  padding:0;
+}
+
+#list-of-options li {
+  float:left;
+  margin:0 5px 0 0;
+  width:125px;
+  height:40px;
+  position:relative;
+}
+
+#list-of-options label, #list-of-options input {
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+#list-of-options input[type="radio"] {
+  opacity:0.011;
+  z-index:100;
+}
+
+#list-of-options input[type="radio"]:checked + label, #list-of-options input[type="radio"]:checked + .field_with_errors label {
+  background:yellow;
+}
+
+#list-of-options label {
+  padding:5px;
+  border:1px solid #CCC;
+  cursor:pointer;
+  z-index:90;
+}
+
+#list-of-options label:hover {
+  background:#DDD;
+}
+
+#list-of-options input[disabled="disabled"] + label:hover {
+  cursor:not-allowed;
+}
+
+.shoe-form .field {
+  padding-top: 10px;
+}
+
+.shoe-form #type-of-payment {
+  padding-top: 0;
+}
+
+.shoe-form #paid-for-field {
+  margin-bottom: 0;
+}
+
+#required-fields-notice {
+  font-style: italic;
+}
+
+#bottom-of-form-padding {
+  padding-bottom: 20px;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  border: 1px solid green;
+  border-radius: 12px;
+  color: white;
+  padding: 15px 32px;
+  margin-right: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+.save-button:hover {
+  background-color: #3e8e41;
+}
+
+.back-button {
+  background-color: #f54242;
+  border: 1px solid green;
+  border-radius: 12px;
+  color: white !important;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+.back-button:hover {
+  background-color: #c43333;
+}
+
+.phone-input-field {
+  width: 167px;
+}
+
+.phone-input-search-field {
+  width: 120px;
+}
+
+.task-description-column {
+  width: 350px;
+}
+
+.date-column {
+  width: 85px;
+}
+
+.search-options {
+  display: block;
+  min-height: 200px;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  padding-bottom: 10px;
+}
+
+.search-date-field {
+  float: left;
+  width: 205px;
+  padding: 5px 10px;
+}
+
+.search-checkbox-field {
+  float: left;
+  width: 145px;
+  padding: 5px 10px;
+}
+
+.search-id-field {
+  float: left;
+  width: 105px;
+  padding: 5px 10px;
+}
+
+#search_options_id {
+  width: 85px;
+}
+
+.search-options .actions {
+  padding-top: 15px;
+  float: left;
+  clear: both;
+
+}
+
+.search-form {
+  height: 100%;
+}
+
+#search-parameters {
+  float: left;
+}

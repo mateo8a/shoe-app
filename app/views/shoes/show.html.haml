@@ -1,0 +1,64 @@
+%p
+  %b ID:
+  = @shoe.id_within_organization
+%p
+  %b Owner:
+  = @shoe.owner
+%p
+  %b Phone:
+  = number_to_phone(@shoe.phone)
+%p
+  %b Product type:
+  = @shoe.product_type
+%p
+  %b Brand:
+  = @shoe.brand
+%p
+  %b Color:
+  = @shoe.color
+%p
+  %b Gender:
+  = @shoe.gender
+%p
+  %b Task description:
+  = @shoe.task_description
+%p
+  %b Cost:
+  = "$".html_safe + @shoe.cost.to_s
+%p
+  %b Paid for?:
+  = human_boolean(@shoe.paid_for)
+%p
+  %b Type of payment:
+  = @shoe.type_of_payment
+%p
+  %b Date received:
+  = @shoe.date_received
+%p
+  %b Original date due:
+  = @shoe.date_due
+%p
+  %b Location:
+  = @shoe.location
+%p
+  %b Finished?:
+  = human_boolean(@shoe.finished)
+%p
+  %b Delivered?:
+  = human_boolean(@shoe.delivered)
+%p
+  %b Delivery date and time:
+  = @shoe&.delivered_date&.strftime('%Y-%m-%d %H:%M:%S')
+%p
+  %b Update due date?:
+  = human_boolean(@shoe.update_date_due)
+%p
+  %b Date due:
+  = @shoe&.updated_date_due
+%p
+  %b Void?:
+  = human_boolean(@shoe.void)
+
+= link_to('Edit', edit_shoe_path(@shoe)) unless @shoe.delivered?
+\|
+= link_to 'Back', shoes_path

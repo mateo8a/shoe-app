@@ -1,0 +1,39 @@
+#download-as-csv-link
+  = link_to "Download as CSV", shoes_path(request.parameters.merge({ format: :csv }))
+%table
+  %thead
+    %tr
+      %th ID
+      %th Owner
+      %th Phone
+      %th Product type
+      %th Brand
+      %th Color
+      %th Cost ($)
+      %th Task description
+      %th Date received
+      %th Date due
+      %th Location
+      %th Finished?
+      %th Delivered?
+      %th
+      %th
+
+  %tbody
+    - @shoes.each do |shoe|
+      %tr
+        %td= shoe.id_within_organization
+        %td= shoe.owner
+        %td= number_to_phone(shoe.phone)
+        %td= shoe.product_type
+        %td= shoe.brand
+        %td= shoe.color
+        %td= shoe.cost
+        %td.task-description-column= shoe.task_description
+        %td.date-column= shoe.date_received
+        %td.date-column= shoe.updated_date_due
+        %td= shoe.location
+        %td= human_boolean(shoe.finished)
+        %td= human_boolean(shoe.delivered)
+        %td= link_to 'Show', shoe
+        %td= shoe.delivered? ? "" : link_to('Edit', edit_shoe_path(shoe))

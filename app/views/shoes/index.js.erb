@@ -1,0 +1,2 @@
+<% content = escape_javascript render(:partial => 'shoe_table', :locals => { :shoes => @shoes }) %>
+$("#shoe-table").html("<%= content %>");

@@ -1,0 +1,19 @@
+%h1 Listing organizations
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+
+  %tbody
+    - @organizations.each do |organization|
+      %tr
+        %td= organization.name
+        %td= link_to 'Show', organization
+        %td= link_to 'Edit', edit_organization_path(organization)
+
+%br
+
+= link_to 'New Organization', new_organization_path

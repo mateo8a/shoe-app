@@ -1,0 +1,91 @@
+.search-options
+  = form_with url: shoes_path, scope: :search_options, method: :get, :html => {:class => 'search-form'} do |f|
+    #search-parameters
+      #search-by-id.search-id-field
+        .field
+          = f.label :search_by_id, "ID"
+          = f.number_field :id, min: 1
+
+      #search-by-phone-number.search-checkbox-field
+        .field
+          = f.label :search_by_phone_number, "Phone number"
+          = f.number_field :phone_number, min: 1000000000, max: 9999999999, class: "phone-input-search-field"
+
+      #search-by-name.search-checkbox-field
+        .field
+          = f.label :search_by_name, "Name"
+          = f.text_field :name, size: 18
+
+      #search-by-date-received.search-date-field
+        .field.search-option-checkbox
+          = f.label :date_received
+          = f.check_box :date_received
+        #search-date-received-input.hidden
+          .field
+            = f.label :date_received_from
+            = f.date_select :date_received_from
+          .field
+            = f.label :date_received_to
+            = f.date_select :date_received_to
+
+      #search-by-date-due.search-date-field
+        .field.search-option-checkbox
+          = f.label :date_due
+          = f.check_box :date_due
+        #search-date-due-input.hidden
+          .field
+            = f.label :date_due_from
+            = f.date_select :date_due_from
+          .field
+            = f.label :date_due_to
+            = f.date_select :date_due_to
+
+      #search-by-type-of-payment.search-checkbox-field
+        .field
+          = f.label :search_by_type_of_payment, "Type of payment"
+        .button-options
+          %ul#list-of-options
+            %li
+              = f.radio_button :type_of_payment, "Card"
+              = f.label :type_of_payment, "Card", value: "Card"
+            %li
+              = f.radio_button :type_of_payment, "Cash"
+              = f.label :type_of_payment, "Cash", value: "Cash"
+
+      #search-by-paid-for.search-checkbox-field
+        .field
+          = f.label :search_by_paid_for, "Paid for?"
+        .button-options
+          %ul#list-of-options
+            %li
+              = f.radio_button :paid_for, "1"
+              = f.label :paid_for, "Yes, paid for", value: "1"
+            %li
+              = f.radio_button :paid_for, "0"
+              = f.label :paid_for, "Not paid for", value: "0"
+
+      #search-by-delivered.search-checkbox-field
+        .field
+          = f.label :search_by_delivered, "Delivered?"
+        .button-options
+          %ul#list-of-options
+            %li
+              = f.radio_button :delivered, "1"
+              = f.label :delivered, "Delivered", value: "1"
+            %li
+              = f.radio_button :delivered, "0"
+              = f.label :delivered, "Undelivered", value: "0"
+      #search-by-void.search-checkbox-field
+        .field
+          = f.label :search_by_void, "Void?"
+        .button-options
+          %ul#list-of-options
+            %li
+              = f.radio_button :void, "1"
+              = f.label :void, "Void", value: "1"
+            %li
+              = f.radio_button :void, "0"
+              = f.label :void, "Not void", value: "0"
+
+    .actions
+      = f.submit "Search"
